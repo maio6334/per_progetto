@@ -22,12 +22,16 @@ Version:
 import argparse
 from pathlib import Path
 import sys
+import logging
+import time
+import numpy as np
+import random
 
 #constants
 DEF_MSG='All work and no play makes Jack a dull boy' # 'My mama always said, Life was like a box of chocolates; you never know what you’re gonna get.'
 DEF_LOG= 'log.csv'
 DEF_RATE= 0.5
-DEF_REPT=10
+DEF_REPT=5
 MAX_REPT=50
 INTERNAL=True
 
@@ -115,3 +119,76 @@ def validate_cmdline()-> (int,float,str,str,bool):
     # print(log_file)
     # print(file_input)
     return (num_msg, err_rate,log_file,file_input, mod)
+
+
+
+def _dummy_rnd_gen(d:int)->(int,bool,bool):
+    """
+    Generates dummy pseudo-random values used by _log_test
+
+    Parameters
+    ----------
+    d
+        duration
+
+    Returns
+    -------
+    d
+        duration modified
+    e_d
+       detect an error
+    e_c
+        correct an error 
+    """
+    d+=random.randint(-5,5)
+    e_d=random.randint(0,1)
+    if e_d:
+        e_c=random.randint(0,1)
+    else:
+        e_c=0
+    return (d,e_d,e_c)
+
+def _log_test(n_msg:int,e_rate:float, log_f:str)-> None:
+    """
+    Logs to log_f messages to test logger functionality
+
+    messagge formats:
+        tempo,send,n_mesg,tipo_codifica,durata_cod,err_rate 
+        tempo,recv,n_mesg,tipo_codifica,durata_dec, err_ril, err_corr
+    Parameters
+    ----------
+    n_mesg
+        number of messages to log
+    e_rate
+        error rate
+    log_f
+        log file full path
+
+    Returns
+    -------
+    None
+    """
+    # opening log
+    logger = logging.getLogger(__name__) # maybe None but it's a reccommended practice maybe to distinguish logs from differente modules
+    logging.basicConfig(filename=log_f, filemode='a',encoding='utf-8', \
+    format='%(asctime)s,%(message)s',level=logging.INFO) # datefmt='%m/%d/%Y %I:%M:%S %p',
+
+    for i in np.arange(n_msg):
+        start=time.perf_counter_ns()
+        print(f'dummy {i}')
+        end=time.perf_counter_ns()
+        delta=end-start
+        msg=f"'send',{i},'HAM',{delta},{e_rate},NaN"
+        logger.info(msg)
+
+        delta, *rest = _dummy_rnd_gen(delta)
+        msg=f"'send',{i},'LDPC',{delta},{e_rate},NaN"
+        logger.info(msg)
+
+        delta,e_detect,e_correct = _dummy_rnd_gen(delta)
+        msg=f"'recv',{i},'HAM',{delta},{e_detect},{e_correct}"
+        logger.info(msg)
+
+        delta,e_detect,e_correct = _dummy_rnd_gen(delta)   
+        msg=f"'recv',{i},'LDPC',{delta},{e_detect},{e_correct}"
+        logger.info(msg)

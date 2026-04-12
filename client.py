@@ -44,15 +44,13 @@ Version:
 """
 
 # standard modules
-    #import argparse
-    #from pathlib import Path
-    #import sys
+
 import socket
 import pickle
 import matplotlib
-from cli_funct import validate_cmdline
+from cli_funct import validate_cmdline, _log_test
 
-# import time
+
 
 # import os
 
@@ -67,6 +65,14 @@ BUFFER_SIZE = 1024
 #validate input
 n_msg, e_rate, log_f, input_f, mode = validate_cmdline()
 print(n_msg, e_rate, log_f, input_f, mode)
+
+'''
+messagge formats
+
+tempo,send,n_mesg,tipo_codifica,durata_cod,err_rate 
+tempo,recv,n_mesg,tipo_codifica,durata_dec, err_ril, err_corr
+'''
+_log_test(n_msg,e_rate, log_f)
 
 """ class Controller:
     selectedfile=""
