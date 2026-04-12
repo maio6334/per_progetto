@@ -1,5 +1,5 @@
 #folders
-.vscode/
+# .vscode/ better save configuration modified to eliminate AI hint on the code
 .venv/
 __pycache__/
 hamming-codec/

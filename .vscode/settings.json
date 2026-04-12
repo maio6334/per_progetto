@@ -1,0 +1,16 @@
+{
+    "python-envs.pythonProjects": [
+        {
+            "path": ".",
+            "envManager": "ms-python.python:venv",
+            "packageManager": "ms-python.python:pip"
+        }
+    ],
+    "editor.inlineSuggest.enabled": false,
+    "editor.quickSuggestions": {
+    "other": "off",
+    "comments": "off",
+    "strings": "off",
+    },
+    "editor.lightbulb.enabled": "off"
+}
