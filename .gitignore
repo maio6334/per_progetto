@@ -1,0 +1,22 @@
+#folders
+.vscode/
+.venv/
+__pycache__/
+hamming-codec/
+old/
+pyldpc
+
+#single files
+test_ldpc.py
+snippet.txt
+pypldp-shapingG.py
+test_hammyng.py
+progetto.code-workspace
+commonhelp.py
+server.py
+convenzioni.txt
+appunti_progetto.txt
+istruzioni.txt
+prove.txt
+strbyte.py
+test_hammyng copy.py
