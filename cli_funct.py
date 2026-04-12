@@ -31,7 +31,7 @@ DEF_REPT=10
 MAX_REPT=50
 INTERNAL=True
 
-def validate_cmline():
+def validate_cmdline()-> (int,float,str,str,bool):
     """
     Parse command line argument checking type for numeric inputs
     Add help funcionality to command line
@@ -110,8 +110,8 @@ def validate_cmline():
 
     num_msg=range_validate('--messages',args.messages,DEF_REPT,MAX_REPT)
     err_rate =range_validate('--error-rate',args.error_rate,0.0,1.0)  # !! Parser translate - with _
-    print(num_msg)
-    print(err_rate)
-    print(log_file)
-    print(file_input)
-    return num_msg, err_rate,log_file,file_input, mode
+    # print(num_msg)
+    # print(err_rate)
+    # print(log_file)
+    # print(file_input)
+    return (num_msg, err_rate,log_file,file_input, mod)
