@@ -10,7 +10,6 @@ pyldpc
 commonhelp.py
 
 *.pyc
-progetto.code-workspace
 
 snippet.txt
 convenzioni.txt
