@@ -9,6 +9,7 @@ grafico/
 
 #single files
 commonhelp.py
+log.csv
 
 *.pyc
 

@@ -11,10 +11,11 @@ Usage:
     python client.py [arguments]
 
 Arguments:
-    --input FILE        Path to the input text file (default: built-in default string)
-    --messages N        Number of messages to send (default: 10)
-    --error-rate RATE   Error injection rate, float between 0.0 and 1.0  (default: 0.01)
-    --log FILE          Path to the output log file (default: client.log)
+    -i --input FILE        Path to the input text file (default: built-in default string)
+    -m --messages N        Number of messages to send (default: 10)
+    -r --repetition
+    -e --error-rate RATE   Error injection rate, float between 0.0 and 1.0  (default: 0.01)
+    -l --log FILE          Path to the output log file (default: client.log)
 
 Examples:
     $ python client.py --help
@@ -63,8 +64,8 @@ TCP_PORT = 23232
 BUFFER_SIZE = 1024
 
 #validate input
-n_msg, e_rate, log_f, input_f, mode = validate_cmdline()
-print(n_msg, e_rate, log_f, input_f, mode)
+n_msg,n_rept, e_rate, log_f, input_f, mode = validate_cmdline()
+print(n_msg,n_rept, e_rate, log_f, input_f, mode)
 
 '''
 messagge formats
