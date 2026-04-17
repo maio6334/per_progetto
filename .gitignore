@@ -5,6 +5,7 @@ __pycache__/
 hamming-codec/
 old/
 pyldpc
+grafico/
 
 #single files
 commonhelp.py
