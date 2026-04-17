@@ -64,12 +64,12 @@ TCP_PORT = 23232
 BUFFER_SIZE = 1024
 
 #validate input
-n_msg,n_rept, e_rate, log_f, input_f, mode = validate_cmdline()
-print(n_msg,n_rept, e_rate, log_f, input_f, mode)
+num_msg,num_rept, error_rate, log_f, input_f, is_internal_input = validate_cmdline()
+print(num_msg,num_rept, error_rate, log_f, input_f, is_internal_input)
 
 '''
 messagge formats
-
+every messag is repeated num_rept times
 tempo,send,n_mesg,tipo_codifica,durata_cod,err_rate 
 tempo,recv,n_mesg,tipo_codifica,durata_dec, err_ril, err_corr
 '''

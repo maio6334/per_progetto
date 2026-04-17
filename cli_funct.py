@@ -61,8 +61,8 @@ def validate_cmdline()-> (int,float,str,str,bool):
         file to log events
     file_input
         full path of input file from command line ( None if input is missing)
-    mod
-        True if input file is missing
+    internal
+        True if input file is missing use internal string
 
     """
     parser = argparse.ArgumentParser()
@@ -90,9 +90,9 @@ def validate_cmdline()-> (int,float,str,str,bool):
             print(f"Error: Input file \"{file_input}\" does\'nt exists.")
             sys.exit()
         
-        mod= not(INTERNAL)
+        internal= False
     else:
-        mod=INTERNAL
+        internal=True
         file_input=None
 
 
@@ -124,7 +124,7 @@ def validate_cmdline()-> (int,float,str,str,bool):
     # print(err_rate)
     # print(log_file)
     # print(file_input)
-    return (num_msg, num_repetition, err_rate,log_file,file_input, mod)
+    return (num_msg, num_repetition, err_rate,log_file,file_input, internal)
 
 
 
@@ -159,8 +159,8 @@ def _log_test(n_msg:int,e_rate:float, log_f:str)-> None:
     Logs to log_f messages to test logger functionality
 
     messagge formats:
-        tempo,send,n_mesg,tipo_codifica,durata_cod,err_rate 
-        tempo,recv,n_mesg,tipo_codifica,durata_dec, err_ril, err_corr
+        tempo,send,id_mesg,tipo_codifica,durata_cod,err_rate 
+        tempo,recv,id_mesg,tipo_codifica,durata_dec, err_ril, err_corr
     Parameters
     ----------
     n_mesg
