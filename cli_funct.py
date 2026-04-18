@@ -1,13 +1,16 @@
 """
 This module contains functions used by client.py.
 
-Used for analizing and checking command line parameters   
-
+Used for:
+   - analizing and checking command line parameters 
+   - testing logger object
+   - reading lines from source selected (file/internal)
 
 
 Functions:
-    validate_cmline()->None : analize and checks command line parameters 
-
+    validate_cmdline : analize and checks command line parameters 
+    _dummy_rnd_gen   : generates dummy values used by _log_test
+    _log_test        : test logger functionality
 
 Date: 
     AA 2025/2026
@@ -126,8 +129,6 @@ def validate_cmdline()-> (int,float,str,str,bool):
     # print(file_input)
     return (num_msg, num_repetition, err_rate,log_file,file_input, internal)
 
-
-
 def _dummy_rnd_gen(d:int)->(int,bool,bool):
     """
     Generates dummy pseudo-random values used by _log_test
@@ -198,3 +199,54 @@ def _log_test(n_msg:int,e_rate:float, log_f:str)-> None:
         delta,e_detect,e_correct = _dummy_rnd_gen(delta)   
         msg=f"'recv',{i},'LDPC',{delta},{e_detect},{e_correct}"
         logger.info(msg)
+
+
+def get_next_line(fd)-> str:
+    """
+    Read line from a text file in a cyclic mode
+
+    Parameters
+    ----------
+    fd
+        file descriptot
+
+    Returns
+    -------
+    l
+        current line
+
+    """
+    if l:=fd.readline():
+        return l
+    else:
+        fd.seek(0)
+        return fd.readline()
+
+def get_message(f,input_f:str, internal:bool)-> (str,):
+    """
+    yield a string from a text file (input_f) or a internal string (DEF_MSG)
+
+    Parameters
+    ----------
+    f
+        used to store file descriptor 
+    input_f
+        text file full path from command line | None if internal
+    internal
+        boolean , select the source of text
+
+    Returns
+    -------
+    line
+        current line
+    f
+        file descriptor
+    """
+    #global f
+    if internal:
+        line=DEF_MSG
+    else:
+        if f is None:
+            f=open(input_f, encoding="utf-8")
+        line= get_next_line(f)   
+    return line,f

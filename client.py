@@ -49,7 +49,7 @@ Version:
 import socket
 import pickle
 import matplotlib
-from cli_funct import validate_cmdline, _log_test,DEF_MSG
+from cli_funct import validate_cmdline, _log_test, get_message
 
 
 
@@ -78,25 +78,8 @@ _log_test(n_msg,e_rate, log_f)
 '''
 f=None
 
-def get_next_line(fd)-> str:
-    if l:=fd.readline():
-        return l
-    else:
-        fd.seek(0)
-        return fd.readline()
-
-def get_message(internal:bool)-> (str,):
-    global f
-    if internal:
-        line=DEF_MSG
-    else:
-        if f is None:
-            f=open(input_f, encoding="utf-8")
-        line= get_next_line(f)   
-    return line,f
-
 for i in range(12):
-    mesg, f= get_message(is_internal_input)
+    mesg, f= get_message(f,input_f,is_internal_input)
     print(i,mesg)
 
 if not(f is None):
