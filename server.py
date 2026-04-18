@@ -22,7 +22,7 @@ Arguments:
     
 
 Examples:
-    $ python server.py 
+    python server.py 
 
 
 Dependencies:
@@ -49,6 +49,7 @@ import random
 
 # local modules and functions
 from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE 
+from cli_funct import GetDetailedInfo
 #from commonhelp import verify_command, txt_file_2_dic
 
 def server_activate():
@@ -68,14 +69,21 @@ def stop_loop():
     global stop
     stop=True
 
+descr=\
+'''
+Server side module of a two-component application for evaluating Hamming and LDPC error correction algorithms.
+'''
 
-parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+parser = argparse.ArgumentParser(description=descr, formatter_class=argparse.RawDescriptionHelpFormatter)
+parser.add_argument("--verbose", nargs=0,action=GetDetailedInfo, help="Prints the main-module's docstring")
+    
 args = parser.parse_args()
 
 stop=False
 signal.signal(signal.SIGINT,stop_loop) # to accept ctrl +c from console
 
 serv=server_activate()
+print('\nServer started. CTRL+C to close.\n')
 serv.settimeout(20)
 conn_count=0
 conn=None

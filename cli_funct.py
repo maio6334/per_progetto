@@ -44,6 +44,15 @@ DEF_REPT=50
 MAX_REPT=100
 INTERNAL=True
 
+class GetDetailedInfo(argparse.Action):
+    def __init__(self,option_strings,dest,nargs, **kwargs):
+        #print(f'init class nargs{nargs}\n help{help}')
+        super().__init__(option_strings,dest,nargs, **kwargs)
+
+    def __call__(self,parser,namepsace,values,option_strings=None):
+        print(sys.modules['__main__'].__doc__)
+        parser.exit()
+
 def manage_cmdline(descr:str)-> (int,float,str,str,bool):
     """
     Parse command line argument checking type for numeric inputs
@@ -73,14 +82,7 @@ def manage_cmdline(descr:str)-> (int,float,str,str,bool):
         True if input file is missing use internal string
 
     """
-    class GetDetailedInfo(argparse.Action):
-        def __init__(self,option_strings,dest,nargs, **kwargs):
-            #print(f'init class nargs{nargs}\n help{help}')
-            super().__init__(option_strings,dest,nargs, **kwargs)
 
-        def __call__(self,parser,namepsace,values,option_strings=None):
-            print(sys.modules['__main__'].__doc__)
-            parser.exit()
 
     parser = argparse.ArgumentParser(description=descr, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("-i","--input", default=None, help="Path to the input text file (default: built-in default string)")
