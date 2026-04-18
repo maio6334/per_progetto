@@ -82,7 +82,7 @@ def validate_cmdline()-> (int,float,str,str,bool):
         try:
             f=open(file_input, encoding="utf-8") 
             try:
-                t=f.read()
+                t=f.read(1) # check only first char - that is one or more bytes
             except UnicodeDecodeError:
                 print(f"Error: Input file \"{file_input}\" di tipo binario")
                 sys.exit()

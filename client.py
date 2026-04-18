@@ -49,7 +49,7 @@ Version:
 import socket
 import pickle
 import matplotlib
-from cli_funct import validate_cmdline, _log_test
+from cli_funct import validate_cmdline, _log_test,DEF_MSG
 
 
 
@@ -67,13 +67,76 @@ BUFFER_SIZE = 1024
 num_msg,num_rept, error_rate, log_f, input_f, is_internal_input = validate_cmdline()
 print(num_msg,num_rept, error_rate, log_f, input_f, is_internal_input)
 
+#test log function
 '''
-messagge formats
-every messag is repeated num_rept times
-tempo,send,n_mesg,tipo_codifica,durata_cod,err_rate 
-tempo,recv,n_mesg,tipo_codifica,durata_dec, err_ril, err_corr
-'''
+#messagge formats
+#every messag is repeated num_rept times
+#tempo,send,n_mesg,tipo_codifica,durata_cod,err_rate 
+#tempo,recv,n_mesg,tipo_codifica,durata_dec, err_ril, err_corr
+)
 _log_test(n_msg,e_rate, log_f)
+'''
+f=None
+
+def get_next_line(fd)-> str:
+    if l:=fd.readline():
+        return l
+    else:
+        fd.seek(0)
+        return fd.readline()
+
+def get_message(internal:bool)-> (str,):
+    global f
+    if internal:
+        line=DEF_MSG
+    else:
+        if f is None:
+            f=open(input_f, encoding="utf-8")
+        line= get_next_line(f)   
+    return line,f
+
+for i in range(12):
+    mesg, f= get_message(is_internal_input)
+    print(i,mesg)
+
+if not(f is None):
+    f.close()
+exit()
+
+def connect_2_server():
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+   # s.settimeout(5.0)
+    try:
+        s.connect((TCP_IP, TCP_PORT))
+    except ConnectionRefusedError:
+        print('Server refused connection. Exiting')
+        exit(1)
+    except socket.timeout:
+        print('Timeout connection to server. Exiting')
+        exit(2)      
+    return s
+
+
+
+s=connect_2_server()
+while True and count<3:
+    #os.system('clear')
+    ctl=Controller()
+    mesg = pickle.dumps(cmd)
+    s.sendall(mesg) # defualt utf-8
+    if (cm1=='q'):
+            end_prog(s,0)
+    data=pickle.loads(s.recv(BUFFER_SIZE))
+    cm1,value = data
+    cmd_res(cm1,value)
+
+    # print(data)
+    # time.sleep(5)
+    
+    count+=1
+
+s.close()
+
 
 """ class Controller:
     selectedfile=""
@@ -117,46 +180,11 @@ def end_prog(s,val=0):
     s.close()
     sys.exit(val)
 
-def connect_2_server():
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-   # s.settimeout(5.0)
-    try:
-        s.connect((TCP_IP, TCP_PORT))
-    except ConnectionRefusedError:
-        print('Server refused connection. Exiting')
-        exit(1)
-    except socket.timeout:
-        print('Timeout connection to server. Exiting')
-        exit(2)      
-    return s
+
 
 #check number of parameters
 if (len(sys.argv) < 2):
     my.usage_info()
 
 count =0
-s=connect_2_server()
-while True and count<3:
-    #os.system('clear')
-    ctl=Controller()
-    #print_choices()
-    #cmd = input(f"\nSelect a command -> ")  
-    # ret, cm1, cm2 =verify_command(cmd)
-    # if not(ret):
-    #     print(f'command unknown :{cmd}')
-    #     time.sleep(3)
-    #     continue  # command unknown
-    mesg = pickle.dumps(cmd)
-    s.sendall(mesg) # defualt utf-8
-    if (cm1=='q'):
-            end_prog(s,0)
-    data=pickle.loads(s.recv(BUFFER_SIZE))
-    cm1,value = data
-    cmd_res(cm1,value)
-
-    # print(data)
-    # time.sleep(5)
-    
-    count+=1
-
-s.close() """
+"""
