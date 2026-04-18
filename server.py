@@ -28,6 +28,7 @@ Examples:
 Dependencies:
     - python       >= 3.12.3
     - random
+    - cli_funct
     - constants
 
 Date: 
