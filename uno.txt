@@ -1,3 +1,4 @@
-1abc def ghi
-2uno due tre quattro
-3alfa beta gamma delta
+abc def ghi
+uno due tre quattro
+alfa beta gamma delta
+pippo pippo

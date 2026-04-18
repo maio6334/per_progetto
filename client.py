@@ -45,70 +45,41 @@ Version:
 """
 
 # standard modules
-
 import socket
 import pickle
 import matplotlib
-from cli_funct import validate_cmdline, _log_test, get_message
 
-
-
-# import os
-
-# local modules
-# from commonhelp import  print_file_dic
-
-#constants
-TCP_IP = '127.0.0.1' #  'lab00'
-TCP_PORT = 23232
-BUFFER_SIZE = 1024
+# local modules 
+from cli_funct import validate_cmdline, get_message, connect_2_server
+from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE 
 
 #validate input
 num_msg,num_rept, error_rate, log_f, input_f, is_internal_input = validate_cmdline()
 print(num_msg,num_rept, error_rate, log_f, input_f, is_internal_input)
 
-#test log function
-'''
-#messagge formats
-#every messag is repeated num_rept times
-#tempo,send,n_mesg,tipo_codifica,durata_cod,err_rate 
-#tempo,recv,n_mesg,tipo_codifica,durata_dec, err_ril, err_corr
-)
-_log_test(n_msg,e_rate, log_f)
-'''
-f=None
+if TESTING:
+    num_msg=3
+    num_rept=2
 
-for i in range(12):
+f=None
+s=connect_2_server()
+
+for i in range(num_msg):
     mesg, f= get_message(f,input_f,is_internal_input)
-    print(i,mesg)
+    for r in range(num_rept):
+        print(f'mesg n={i},repetion={r},mesg={mesg}')
 
 if not(f is None):
     f.close()
+    print(f'file {input_f} was closed')
 exit()
 
-def connect_2_server():
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-   # s.settimeout(5.0)
-    try:
-        s.connect((TCP_IP, TCP_PORT))
-    except ConnectionRefusedError:
-        print('Server refused connection. Exiting')
-        exit(1)
-    except socket.timeout:
-        print('Timeout connection to server. Exiting')
-        exit(2)      
-    return s
 
 
-
-s=connect_2_server()
 while True and count<3:
-    #os.system('clear')
-    ctl=Controller()
+
     mesg = pickle.dumps(cmd)
     s.sendall(mesg) # defualt utf-8
-    if (cm1=='q'):
-            end_prog(s,0)
     data=pickle.loads(s.recv(BUFFER_SIZE))
     cm1,value = data
     cmd_res(cm1,value)

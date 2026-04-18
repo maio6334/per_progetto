@@ -21,7 +21,7 @@ Author:
 Version:
     1.0
 """
-
+# standard modules
 import argparse
 from pathlib import Path
 import sys
@@ -30,7 +30,10 @@ import time
 import numpy as np
 import random
 
-#constants
+# local modules
+from costants import TESTING
+
+# local constants
 DEF_MSG='All work and no play makes Jack a dull boy' # 'My mama always said, Life was like a box of chocolates; you never know what you’re gonna get.'
 DEF_LOG= 'log.csv'
 DEF_RATE= 0.5
@@ -249,4 +252,33 @@ def get_message(f,input_f:str, internal:bool)-> (str,):
         if f is None:
             f=open(input_f, encoding="utf-8")
         line= get_next_line(f)   
-    return line,f
+    return line.rstrip('\n'),f
+
+
+def connect_2_server():
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+   # s.settimeout(5.0)
+    try:
+        s.connect((TCP_IP, TCP_PORT))
+    except ConnectionRefusedError:
+        print('Server refused connection. Exiting')
+        exit(1)
+    except socket.timeout:
+        print('Timeout connection to server. Exiting')
+        exit(2)      
+    return s
+
+
+
+
+def __main__():
+    pass
+    #test log function
+    '''
+    #messagge formats
+    #every messag is repeated num_rept times
+    #tempo,send,n_mesg,tipo_codifica,durata_cod,err_rate 
+    #tempo,recv,n_mesg,tipo_codifica,durata_dec, err_ril, err_corr
+    )
+    _log_test(n_msg,e_rate, log_f)
+    '''
