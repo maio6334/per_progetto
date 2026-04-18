@@ -29,9 +29,10 @@ import logging
 import time
 import numpy as np
 import random
+import socket
 
 # local modules
-from costants import TESTING
+from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE
 
 # local constants
 DEF_MSG='All work and no play makes Jack a dull boy' # 'My mama always said, Life was like a box of chocolates; you never know what you’re gonna get.'
@@ -43,7 +44,7 @@ DEF_REPT=50
 MAX_REPT=100
 INTERNAL=True
 
-def validate_cmdline()-> (int,float,str,str,bool):
+def manage_cmdline(descr:str)-> (int,float,str,str,bool):
     """
     Parse command line argument checking type for numeric inputs
     Add help funcionality to command line
@@ -53,7 +54,8 @@ def validate_cmdline()-> (int,float,str,str,bool):
 
     Parameters
     ----------
-    None
+    descr
+        brief description of module
 
     Returns
     -------
@@ -71,12 +73,24 @@ def validate_cmdline()-> (int,float,str,str,bool):
         True if input file is missing use internal string
 
     """
-    parser = argparse.ArgumentParser()
+    class GetDetailedInfo(argparse.Action):
+        def __init__(self,option_strings,dest,nargs, **kwargs):
+            #print(f'init class nargs{nargs}\n help{help}')
+            super().__init__(option_strings,dest,nargs, **kwargs)
+
+        def __call__(self,parser,namepsace,values,option_strings=None):
+            print(sys.modules['__main__'].__doc__)
+            parser.exit()
+
+    parser = argparse.ArgumentParser(description=descr, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("-i","--input", default=None, help="Path to the input text file (default: built-in default string)")
     parser.add_argument("-m","--messages",type=int, default=DEF_MESG,help=f"number of messages to send (default: {DEF_MESG}, max:{MAX_MESG} )")
     parser.add_argument("-r","--repeat", type=int,default=DEF_REPT,help=f"number of repetition for each message (default: {DEF_REPT}, max:{MAX_REPT} )")
     parser.add_argument("-e","--error-rate", type=float,default=DEF_RATE,help="Error injection rate, float between 0.0 and 1.0  (default: 0.0)")
     parser.add_argument("-l","--log", default=DEF_LOG, help="Path to the output log file (default: ./client.log)")
+    parser.add_argument("--verbose", nargs=0,action=GetDetailedInfo, help="Prints the main-module's docstring")
+    
+    
     args = parser.parse_args()
 
     script_dir = Path(__file__).parent.resolve()

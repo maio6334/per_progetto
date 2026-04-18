@@ -1,10 +1,51 @@
 #!/usr/bin/env python3
+"""
+Server side module of a two-component application for evaluating Hamming and LDPC error correction algorithms.
 
+It receives from client a messagge consisting in XXX fields:
+ - id message (int)
+ - an (float) error rate value
+ - a coded string 
+ - a checksum (byte)
+ it modified the string 
+ then it send back a message consisting in YY fields:
+ - id message (int)
+ - a coded string 
+ - a checksum (byte)
+
+
+
+Usage:
+    python server.py 
+
+Arguments:
+    
+
+Examples:
+    $ python server.py 
+
+
+Dependencies:
+    - python       >= 3.12.3
+    - random
+    - constants
+
+Date: 
+    AA 2025/2026
+
+Author:
+    Angelo Maurizio Calabrese <angelo.calabrese@studenti.unimi.it>
+
+Version:
+    1.0
+"""
 # standard modules
+import argparse  
 import socket
 import os
 import pickle
 import signal # to handle manual shutdown
+import random
 
 # local modules and functions
 from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE 
@@ -27,11 +68,15 @@ def stop_loop():
     global stop
     stop=True
 
+
+parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+args = parser.parse_args()
+
 stop=False
 signal.signal(signal.SIGINT,stop_loop) # to accept ctrl +c from console
 
 serv=server_activate()
-serv.settimeout(2)
+serv.settimeout(20)
 conn_count=0
 conn=None
 
@@ -40,37 +85,31 @@ while not stop:
         #raise
         conn, addr = serv.accept()
         print(f'connected from {addr}')
+        count=0
         conn_count+=1
          
     except socket.timeout:  # solving timeout closing conneciont
+        print('\nTimeout.\n')
         continue
     except Exception as e:
         print('\nGeneric socket error.\n')
         break
 
-    try:
-        d = conn.recv(BUFFER_SIZE)
-        if not d:
-            print(f'\nconnection from {addr} lost\n')
-            continue # so wait a new connection
-        msg=pickle.loads(d)
-        conn.sendall(pickle.dumps(msg))
-    except Exception as e:
-        print(f'error starting server.\n Closing program{__file__}')  
-    finally:
-        if conn is not None:
-            conn.close()
-            print(f'Closing connection from {addr}')
-
+    with conn:
+        while not stop:    
+            try:
+                d = conn.recv(BUFFER_SIZE)
+                if not d:
+                    print(f'\nconnection closed from {addr}\n')
+                    break 
+                msg=pickle.loads(d)
+                count+=1
+                print(f'{count} -received {msg}')
+                conn.sendall(pickle.dumps(msg))
+                print(f'{count} - send back {msg}')
+            except Exception as e:
+                print(f'error starting server.\n Closing program{__file__}')  
 
 serv.close() # close the socket
 print(f'Server down.\nManaged {conn_count} connections')
 
-"""  
-#o= "0x" +" 0x".join(f'{(cmd)[i]:02x}' for i in range(len(cmd))) 
-#print (f"received message {count} :", cmd, " - hex values " , o)
-if verify_msg(msg):
-    coding, level, data, ctl = msg
-else:
-    r="U" # wrong message  
-"""

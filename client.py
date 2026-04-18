@@ -2,9 +2,10 @@
 """
 Client side module of a two-component application for evaluating Hamming and LDPC error correction algorithms.
 
-It's coupled with a "server module" that relays the client's messages back injecting random errors.
+It's coupled, via TCP socket, to a server module that relays the client's messages back after injecting random errors.
 Messages are read from a user-selected (utf-8 enconded) text file or from a built-in default string.
-User can configure the number of messages to send and the error injection rate 
+User can configure the number of messages to send and the error injection rate
+the same message is repeated  
 Client attemps to detect and correct errors logging each event to a file
 
 Usage:
@@ -13,13 +14,14 @@ Usage:
 Arguments:
     -i --input FILE        Path to the input text file (default: built-in default string)
     -m --messages N        Number of messages to send (default: 10)
-    -r --repetition
+    -r --repetition REP    Number of repetition for each message (default:)
     -e --error-rate RATE   Error injection rate, float between 0.0 and 1.0  (default: 0.01)
     -l --log FILE          Path to the output log file (default: client.log)
+       --verbose           Prints the docstring info of this module
 
 Examples:
-    $ python client.py --help
-    $ python client.py --input dati.txt --messages 50 
+    python client.py --help
+    python client.py --input dati.txt --messages 50 
 
 Dependencies:
     - python       >= 3.12.3
@@ -30,6 +32,7 @@ Dependencies:
     - pyldpc        = 0.7.10
     - hamming_codec = 0.3.6
     - cli_funct
+    - constants
 
 To do:
     Diagrams from log file
@@ -50,16 +53,26 @@ import pickle
 import matplotlib
 
 # local modules 
-from cli_funct import validate_cmdline, get_message, connect_2_server
+from cli_funct import manage_cmdline, get_message, connect_2_server
 from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE 
 
 #validate input
-num_msg,num_rept, error_rate, log_f, input_f, is_internal_input = validate_cmdline()
+descr=\
+'''
+Client side module of a two-component application for evaluating Hamming and LDPC error correction algorithms.
+
+It's coupled, via TCP socket, to a "server module" that relays the client's messages back injecting random errors.
+Messages are read from a user-selected (utf-8 enconded) text file or from a built-in default string.
+User can configure the number of messages to send and the error injection rate 
+Client attemps to detect and correct errors logging each event to a file
+'''
+
+num_msg,num_rept, error_rate, log_f, input_f, is_internal_input = manage_cmdline(descr)
 print(num_msg,num_rept, error_rate, log_f, input_f, is_internal_input)
 
 if TESTING:
-    num_msg=3
-    num_rept=2
+    num_msg=1
+    num_rept=1
 
 f=None
 s=connect_2_server()
@@ -68,28 +81,33 @@ for i in range(num_msg):
     mesg, f= get_message(f,input_f,is_internal_input)
     for r in range(num_rept):
         print(f'mesg n={i},repetion={r},mesg={mesg}')
+        payload = pickle.dumps(mesg)
+        s.sendall(payload) # defualt utf-8
+        a=s.recv(BUFFER_SIZE)
+        data=pickle.loads(a)
+        if data==mesg:
+            check='passed'
+        else:
+            check='fail'
+        print(f'mesg n={i},repetion={r},check={check}\n')
 
-if not(f is None):
+#closing 
+if f is not None:
     f.close()
     print(f'file {input_f} was closed')
+if s is not None:
+    s.close()
 exit()
 
 
 
-while True and count<3:
 
-    mesg = pickle.dumps(cmd)
-    s.sendall(mesg) # defualt utf-8
-    data=pickle.loads(s.recv(BUFFER_SIZE))
-    cm1,value = data
-    cmd_res(cm1,value)
 
-    # print(data)
-    # time.sleep(5)
-    
-    count+=1
 
-s.close()
+
+
+
+
 
 
 """ class Controller:
