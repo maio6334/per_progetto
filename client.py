@@ -72,24 +72,27 @@ print(num_msg,num_rept, error_rate, log_f, input_f, is_internal_input)
 
 if TESTING:
     num_msg=1
-    num_rept=1
+    num_rept=2
 
 f=None
 s=connect_2_server()
 
 for i in range(num_msg):
-    mesg, f= get_message(f,input_f,is_internal_input)
+    text, f= get_message(f,input_f,is_internal_input)
     for r in range(num_rept):
-        print(f'mesg n={i},repetion={r},mesg={mesg}')
-        payload = pickle.dumps(mesg)
-        s.sendall(payload) # defualt utf-8
-        a=s.recv(BUFFER_SIZE)
-        data=pickle.loads(a)
-        if data==mesg:
-            check='passed'
-        else:
-            check='fail'
-        print(f'mesg n={i},repetion={r},check={check}\n')
+        for c in ['H','L']:
+            print(f'info: n={i}\trepetition={r}\tcoding={c}\terror rate={error_rate}\tmesg={text}')
+            mesg={'i':i,'coding':c,'er':error_rate,'text':text}
+            payload = pickle.dumps(mesg)
+            s.sendall(payload) # defualt utf-8
+            #a=s.recv(BUFFER_SIZE)
+            rmsg=pickle.loads(s.recv(BUFFER_SIZE))
+            rtext=rmsg['text']
+            if text==rtext:
+                check='passed'
+            else:
+                check='fail'
+            print(f'mesg n={i},repetion={r},coding={c},check={check}\n')
 
 #closing 
 if f is not None:
