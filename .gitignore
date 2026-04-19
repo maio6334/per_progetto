@@ -8,7 +8,6 @@ pyldpc
 grafico/
 
 #single files
-commonhelp.py
 log.csv
 
 *.pyc
@@ -23,4 +22,3 @@ strbyte.py
 test_hammyng copy.py
 test_ldpc.py
 pypldp-shapingG.py
-test_hammyng.py
