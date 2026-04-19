@@ -28,7 +28,7 @@ Examples:
 Dependencies:
     - python       >= 3.12.3
     - random
-    - cli_funct
+    - shared_funct
     - constants
 
 Date: 
@@ -50,7 +50,7 @@ import random
 
 # local modules and functions
 from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE 
-from cli_funct import GetDetailedInfo
+from shared_funct import GetDetailedInfo
 #from commonhelp import verify_command, txt_file_2_dic
 
 def server_activate():

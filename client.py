@@ -31,7 +31,7 @@ Dependencies:
     - PyQt6        >= 6.10.2
     - pyldpc        = 0.7.10
     - hamming_codec = 0.3.6
-    - cli_funct
+    - shared_funct
     - constants
 
 To do:
@@ -53,7 +53,7 @@ import pickle
 import matplotlib
 
 # local modules 
-from cli_funct import manage_cmdline, get_message, connect_2_server
+from shared_funct import manage_cmdline, get_message, connect_2_server
 from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE 
 
 #validate input
