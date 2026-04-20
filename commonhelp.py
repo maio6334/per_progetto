@@ -54,18 +54,12 @@ def str_2_int(s:str) -> tuple[int, int]: #converts a string in a int , returns a
         if c!=0:
             i=i<< 8
         i+=ord(s[c]) 
-    return i, (c+1)*8
+    return i, len(s.encode())
 
-# def flip_bit(s:str, i:int)-> str: # supposing s is a string of 1,0  returns the s after changing  the i-th bit 
-#     f= '1' if s[i]=='0' else '0'
-#     s= s[:i] + f+ s[i+1:]
-#     return s
 
 def change_1_bit(s_in: str)-> tuple[str, int]: # supposing s is a string of 1,0  returns s where a bit is changed and his position in string 
-    #l=len(s_in)
     position=random.randint(0,len(s_in)-1)
-    print(f'bit to flip in string={position}')
-    #s_out=flip_bit(s_in,position)
+    print(f'bit flipped position={position}')
     f= '1' if s_in[position]=='0' else '0'
     s_out= s_in[:position] + f+ s_in[position+1:]
     return s_out,position
