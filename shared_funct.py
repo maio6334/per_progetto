@@ -243,7 +243,7 @@ def get_next_line(fd)-> str:
 
 def get_message(f,input_f:str, internal:bool)-> (str,):
     """
-    yield a string from a text file (input_f) or a internal string (DEF_MSG)
+    returns a string from a text file (input_f) or a internal string (DEF_MSG)
 
     Parameters
     ----------
@@ -284,7 +284,67 @@ def connect_2_server():
         exit(2)      
     return s
 
+def string_encoded_into_list(text:str)->list:
+    """
+    Read an input string, encode every char. Returns a list containing encoded chars)
 
+    Parameters
+    ----------
+    text
+        text message to encode
+
+    Returns
+    -------
+    enc
+        list of encoded chars
+    """
+    enc=[]
+    for i in range(len(text)):
+        l=len(text[i].encode())*8
+        c_ord=ord(text[i])
+        enc.append(hc.encode(c_ord,l))
+    pass
+
+def message_with_errors(rate :float, message:list) -> list:
+    """
+    Changes ,according an input error rate, nput string, Returns the list containing errors
+
+    after joing XXXXXXXX MAIO
+
+    Parameters
+    ----------
+    rate
+        % of bits to modify as a whole
+    message
+        list of strings representing encoded chars
+
+    Returns
+    -------
+    enc
+        list of corrupted strings
+    """
+    pass
+    #rate=0.04
+    joined_mess=''.join(message)
+    total_bits=len(joined_mess)
+    print (f'joined_mess= {joined_mess}\ntotal_bits= {total_bits}')
+    num_err=int(round(total_bits*rate,0))
+    split_pos=[0]
+    for i in range(len(enc)):
+        split_pos.append(split_pos[i]+len(enc[i]))
+    print(f'rate={rate}, total_bits={total_bits},num_err={num_err}')
+    rng = np.random.default_rng(12345) # init random generator
+    pos_err = rng.integers(low=0, high=total_bits-1, size=num_err)
+    #pos_err=[69,22,78]
+    for pos in pos_err:
+        #print(f'bit flipping position={pos}')
+        f= '1' if joined_mess[pos]=='0' else '0'
+        joined_mess= joined_mess[:pos] + f+ joined_mess[pos+1:]
+    ret_mess=[]
+    for i in range(len(split_pos)-1):
+        ret_mess.append(joined_mess[split_pos[i]:split_pos[i+1]])
+    
+    return ret_mess
 
 
 def __main__():

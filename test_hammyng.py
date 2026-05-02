@@ -4,9 +4,20 @@ import hamming_codec  as hc
 from commonhelp  import change_1_bit, str_2_int, int_2_str
 import numpy as np
 
-def test_max_len():
+def _max_len_supported():
+    """
+    Encode/decode strings with increasing lenght until excepetion raised to check function limits
+
+    Parameters
+    ----------
+    None
+
+    Returns
+    -------
+    None
+    """
     mesg=0x0
-    for i in range(32):
+    for i in range(60):
         mesg=(mesg<<1)+1
         l=4*(len(hex(mesg))-2) # number of bit
         print(f"i={i} msg={hex(mesg)}, l={l}")
@@ -14,18 +25,33 @@ def test_max_len():
             encoded_message = hc.encode(mesg, l)
             print(encoded_message, len(encoded_message))
         except Exception as e:
-            print(f'encode failed at {l//8} bytes')
+            print(f'encode failed at {(i+1)//8} bytes')
             exit()
         try:
             decoded_message = hc.decode(int(encoded_message,2), len(encoded_message))
             print(encoded_message, len(encoded_message))
         except Exception as e:
-            print(f'decode failed at {l//8} bytes')
-            exit()
+            print(f'decode failed at {(i+1)//8} bytes')
+            #exit()
 
 
-def test_code_decode():
+def _test_code_decode():
+    """
+    Test encoding decoding strategy before splitting in subroutines
+
+
+    Parameters
+    ----------
+    None
+
+    Returns
+    -------
+    None
+    """
+   
+   
     """ 
+    Use case selected to test utf-8 full range
     'A'  U+00041  1 byte  b'\x41'                →  01000001
     '§'  U+000A7  2 byte  b'\xc2\xa7'            →  11000010 10100111
     '€'  U+020AC  3 byte  b'\xe2\x82\xac'        →  11100010 10000010 10101100
@@ -33,21 +59,10 @@ def test_code_decode():
     """
     #text="A§€𝄞"
     #text='la pazza gioia di essere sani'
-    text='''\
-Probabilmente uscì chiudendo dietro a se la porta verde
+    text='''Probabilmente uscì chiudendo dietro a se la porta verde
 Qualcuno si era alzato a preparargli in fretta un caffè d'orzo
 Non so se si girò, non era il tipo d'uomo che si perde'''
-# In nostalgie da ricchi, e andò per la sua strada senza sforzo
-# Quand'io l'ho conosciuto, o inizio a ricordarlo, era già vecchio
-# O così a me sembrava, ma allora non andavo ancora a scuola
-# Colpiva il cranio raso e un misterioso e strano suo apparecchio
-# Un cinto d'ernia che sembrava una fondina per la pistola'''
-
-    enc=[]
-    for i in range(len(text)):
-        l=len(text[i].encode())*8
-        c_ord=ord(text[i])
-        enc.append(hc.encode(c_ord,l))
+    
     print(enc)
     
     # inserting errors
@@ -90,7 +105,19 @@ Non so se si girò, non era il tipo d'uomo che si perde'''
             #print(f'ko al carattere {i}')
             err+=1
     print(f'rielvati {err} errori su {len(text)} caratteri')
-def first_test():
+
+
+def _first_test():
+    """
+    First use coding - decoding
+
+    ----------
+    None
+
+    Returns
+    -------
+    None
+    """
     mystr="the mys"
 
     mesg, l =str_2_int(mystr)
@@ -115,21 +142,12 @@ def first_test():
     print(final2)
 
 
-def dummy():
-    exit()
-    a=[mystr[i:i+5] for i in range(0,len(mystr),5)]
-    c=''.join(a)
-
-    ad={i//5:mystr[i:i+5] for i in range(0,len(mystr),5)}
-    f=[ad[x] for x in ad]
-    f=''.join(f)
-    cd=''.join([ad[x] for x in ad])
-    print(ad)
    
 def main():
-    #test_max_len()
-    test_code_decode()
-    #first_test()
+    pass
+    #_max_len_supported() # ok
+    #_test_code_decode() # ok
+    #_first_test()
 
 if __name__ == "__main__":
     main()
