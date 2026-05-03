@@ -11,7 +11,11 @@ Functions:
     validate_cmdline : analize and checks command line parameters 
     _dummy_rnd_gen   : generates dummy values used by _log_test
     _log_test        : test logger functionality
-
+    enc_str_to_list  : using hamming lib, code every char from a utf-8 string, returns a list
+    dec_list_to_str  : using hamming lib, decode a list of encodeded char, returns string
+    msg_with_errors  : introduces errors flipping single bit in a list of encoded chars, returns list corrupted and total flipped bits
+    diff_in_mess     : compares string, returns number of differences
+    log              : log events in a csv format to a file  
 Date: 
     AA 2025/2026
 
@@ -30,9 +34,11 @@ import time
 import numpy as np
 import random
 import socket
+import hamming_codec  as hc
+from timeit import timeit
 
 # local modules
-from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE
+from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE, TIMING_ITERATIONS
 
 # local constants
 DEF_MSG='All work and no play makes Jack a dull boy' # 'My mama always said, Life was like a box of chocolates; you never know what you’re gonna get.'
@@ -49,7 +55,7 @@ class GetDetailedInfo(argparse.Action):
         #print(f'init class nargs{nargs}\n help{help}')
         super().__init__(option_strings,dest,nargs, **kwargs)
 
-    def __call__(self,parser,namepsace,values,option_strings=None):
+    def __call__(self,parser,namespace,values,option_strings=None):
         print(sys.modules['__main__'].__doc__)
         parser.exit()
 
@@ -83,7 +89,6 @@ def manage_cmdline(descr:str)-> (int,float,str,str,bool):
 
     """
 
-
     parser = argparse.ArgumentParser(description=descr, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("-i","--input", default=None, help="Path to the input text file (default: built-in default string)")
     parser.add_argument("-m","--messages",type=int, default=DEF_MESG,help=f"number of messages to send (default: {DEF_MESG}, max:{MAX_MESG} )")
@@ -92,11 +97,9 @@ def manage_cmdline(descr:str)-> (int,float,str,str,bool):
     parser.add_argument("-l","--log", default=DEF_LOG, help="Path to the output log file (default: ./client.log)")
     parser.add_argument("--verbose", nargs=0,action=GetDetailedInfo, help="Prints the main-module's docstring")
     
-    
     args = parser.parse_args()
 
     script_dir = Path(__file__).parent.resolve()
-
 
     if args.input:
         file_input= '/'.join([script_dir._str,args.input]) # rem script_dir is a object
@@ -116,7 +119,6 @@ def manage_cmdline(descr:str)-> (int,float,str,str,bool):
     else:
         internal=True
         file_input=None
-
 
     log_file= '/'.join([script_dir._str,args.log]) 
     try:
@@ -179,7 +181,7 @@ def _log_test(n_msg:int,e_rate:float, log_f:str)-> None:
     Logs to log_f messages to test logger functionality
 
     messagge formats:
-        tempo,send,id_mesg,tipo_codifica,durata_cod,err_rate 
+        time,send,id_mesg,tipo_codifica,durata_cod,err_rate 
         tempo,recv,id_mesg,tipo_codifica,durata_dec, err_ril, err_corr
     Parameters
     ----------
@@ -284,9 +286,9 @@ def connect_2_server():
         exit(2)      
     return s
 
-def string_encoded_into_list(text:str)->list:
+def enc_str_to_list(text:str)->list:
     """
-    Read an input string, encode every char. Returns a list containing encoded chars)
+    Read an input string, encode every char.Calculate encoding average time of execution, Returns a list containing encoded chars and average time
 
     Parameters
     ----------
@@ -297,15 +299,22 @@ def string_encoded_into_list(text:str)->list:
     -------
     enc
         list of encoded chars
+    dur_avg
+
     """
     enc=[]
+    dur=0
     for i in range(len(text)):
         l=len(text[i].encode())*8
         c_ord=ord(text[i])
-        enc.append(hc.encode(c_ord,l))
-    pass
+        c=hc.encode(c_ord,l)
+        dur+= timeit(lambda: hc.encode(c_ord,l), number=TIMING_ITERATIONS)
+        enc.append(c)
+    dur_avg=dur/(TIMING_ITERATIONS * len(text))
+    #print(f'"ENC","HAM",{dur_avg}')
+    return enc, dur_avg
 
-def message_with_errors(rate :float, message:list) -> list:
+def msg_with_errors(rate :float, message:list) -> (list, int):
     """
     Changes ,according an input error rate, nput string, Returns the list containing errors
 
@@ -322,16 +331,17 @@ def message_with_errors(rate :float, message:list) -> list:
     -------
     enc
         list of corrupted strings
+    num_err
+        num of bits changed in every list's item
     """
-    pass
     #rate=0.04
     joined_mess=''.join(message)
     total_bits=len(joined_mess)
-    print (f'joined_mess= {joined_mess}\ntotal_bits= {total_bits}')
+    #print (f'joined_mess= {joined_mess}\ntotal_bits= {total_bits}')
     num_err=int(round(total_bits*rate,0))
     split_pos=[0]
-    for i in range(len(enc)):
-        split_pos.append(split_pos[i]+len(enc[i]))
+    for i in range(len(message)):
+        split_pos.append(split_pos[i]+len(message[i]))
     print(f'rate={rate}, total_bits={total_bits},num_err={num_err}')
     rng = np.random.default_rng(12345) # init random generator
     pos_err = rng.integers(low=0, high=total_bits-1, size=num_err)
@@ -344,7 +354,73 @@ def message_with_errors(rate :float, message:list) -> list:
     for i in range(len(split_pos)-1):
         ret_mess.append(joined_mess[split_pos[i]:split_pos[i+1]])
     
-    return ret_mess
+    return ret_mess, num_err
+
+def dec_list_to_str(message:list)-> str:
+    """
+    Using Hamming lib, decode a list of encodeded char into a string, substitutes char with "X" if decoding fails
+
+    Parameters
+    ----------
+    text
+        list of encoded chars
+
+    Returns
+    -------
+    r
+        string
+    """
+        
+    r=[]
+    dur=0
+    for i in range(len(message)):
+        imsg=int(message[i],2)
+        l=len(message[i])
+        d = hc.decode(imsg, l)
+        dur+= timeit(lambda: hc.decode(imsg, l), number=TIMING_ITERATIONS)
+        try:
+            r.append(chr(int(d,2)))
+        except ValueError:
+            print(f'error decoding character in position {i} , inserting X instead', file=sys.stderr)
+            r.append('X')
+    r=''.join(r)
+    dur_avg=dur/(TIMING_ITERATIONS * len(message))
+    #print(f'"DEC","HAM",{dur_avg}')
+    return r, dur_avg
+
+def diff_in_mess(initial:str, final:str)-> int:
+    """
+    Compares two string returning the difference
+
+    Compares two string by position, counts how many corrispondent chars differs
+
+    Parameters
+    ----------
+    initial
+        string 1 to compare
+    finale
+        string 2 to compare
+
+    Returns
+    -------
+    diff
+        number of different chars between two strings
+    """
+      
+    #incredibile
+    # sum(1 for a,b in zip(initial, final) if a!=b)
+    diff=0
+    for i in range(len(initial)):
+        if final[i]!=initial[i]:
+            diff+=1
+    return diff
+
+def log(event:dict,log_f:str)-> None:
+    FORMAT='%(asctime)s,%(message)s,%(rate)s,%(diff)s,%(avg_te)s,%(avg_td)s'
+    logger = logging.getLogger(__name__) # maybe None but it's a reccommended practice maybe to distinguish logs from differente modules
+    logging.basicConfig(filename=log_f, filemode='a',encoding='utf-8', \
+    format=FORMAT,level=logging.INFO) # datefmt='%m/%d/%Y %I:%M:%S %p',
+    logger.info(event['coding'],extra=event)
 
 
 def __main__():

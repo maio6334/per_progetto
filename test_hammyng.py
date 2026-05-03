@@ -2,6 +2,9 @@
 
 import hamming_codec  as hc
 from commonhelp  import change_1_bit, str_2_int, int_2_str
+from shared_funct import enc_str_to_list, msg_with_errors, dec_list_to_str,\
+                        diff_in_mess, log
+
 import numpy as np
 
 def _max_len_supported():
@@ -57,55 +60,32 @@ def _test_code_decode():
     '€'  U+020AC  3 byte  b'\xe2\x82\xac'        →  11100010 10000010 10101100
     '𝄞'  U+1D11E  4 byte  b'\xf0\x9d\x84\x9e'   →  11110000 10011101 10000100 10011110 
     """
-    #text="A§€𝄞"
+    text="A§€𝄞"
     #text='la pazza gioia di essere sani'
-    text='''Probabilmente uscì chiudendo dietro a se la porta verde
-Qualcuno si era alzato a preparargli in fretta un caffè d'orzo
-Non so se si girò, non era il tipo d'uomo che si perde'''
+#     text='''Probabilmente uscì chiudendo dietro a se la porta verde
+# Qualcuno si era alzato a preparargli in fretta un caffè d'orzo
+# Non so se si girò, non era il tipo d'uomo che si perde'''
+    #encode
+    enc, avg_te= enc_str_to_list(text)
     
-    print(enc)
-    
+    #print(enc)
     # inserting errors
     rate=0.04
-    joined_mess=''.join(enc)
-    total_bits=len(joined_mess)
-    print (f'joined_mess= {joined_mess}\ntotal_bits= {total_bits}')
-    num_err=int(round(total_bits*rate,0))
-    split_pos=[0]
-    for i in range(len(enc)):
-        split_pos.append(split_pos[i]+len(enc[i]))
-    print(f'rate={rate}, total_bits={total_bits},num_err={num_err}')
-    rng = np.random.default_rng(12345) # init random generator
-    pos_err = rng.integers(low=0, high=total_bits-1, size=num_err)
-    #pos_err=[69,22,78]
-    for pos in pos_err:
-        #print(f'bit flipping position={pos}')
-        f= '1' if joined_mess[pos]=='0' else '0'
-        joined_mess= joined_mess[:pos] + f+ joined_mess[pos+1:]
-    ret_mess=[]
-    for i in range(len(split_pos)-1):
-        ret_mess.append(joined_mess[split_pos[i]:split_pos[i+1]])
-    
-    print(enc,ret_mess,sep='\n')
-    #try di recover errors
-    r=[]
-    for i in range(len(ret_mess)):
-        d = hc.decode(int(ret_mess[i],2), len(ret_mess[i]))
-        try:
-            r.append(chr(int(d,2)))
-        except ValueError:
-            print(f'error detecting {i} value, inserting X instead')
-            r.append('X')
-    
-    r=''.join(r)
-    print(r)
-    err=0
-    for i in range(len(text)):
-        if r[i]!=text[i]:
-            #print(f'ko al carattere {i}')
-            err+=1
-    print(f'rielvati {err} errori su {len(text)} caratteri')
+    ret_mess, flipped=msg_with_errors(rate, enc)
+    #decode
+    r_text, avg_td= dec_list_to_str(ret_mess)
 
+    #print(r_text)
+    diff=diff_in_mess(text,r_text)
+    print(f'detected {diff} diff  in {len(text)} chars')
+    event={}
+    event['coding']='HAM'
+    event['avg_td']=avg_td
+    event['avg_te']=avg_te
+    event['rate']=rate
+    event['diff']=diff
+    #['HAM',avg_te,avg_td,rate,diff]
+    log(event,"test.csv" )
 
 def _first_test():
     """
@@ -146,7 +126,7 @@ def _first_test():
 def main():
     pass
     #_max_len_supported() # ok
-    #_test_code_decode() # ok
+    _test_code_decode() # ok
     #_first_test()
 
 if __name__ == "__main__":
