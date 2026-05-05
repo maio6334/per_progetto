@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 This module contains functions used by client.py.
 
@@ -422,8 +423,14 @@ def log(event:dict,log_f:str)-> None:
     format=FORMAT,level=logging.INFO) # datefmt='%m/%d/%Y %I:%M:%S %p',
     logger.info(event['coding'],extra=event)
 
+def read_file(fullp:str)-> str:
+   #manca il try e la docstring
+    with open(fullp,encoding='utf-8') as f:
+        l=f.read()
+        #print(l)
+    return l
 
-def __main__():
+def main():
     pass
     #test log function
     '''
@@ -434,3 +441,7 @@ def __main__():
     )
     _log_test(n_msg,e_rate, log_f)
     '''
+    read_file('./inferno_c1.txt')
+
+if __name__ == "__main__":
+    main()

@@ -3,7 +3,7 @@
 import hamming_codec  as hc
 from commonhelp  import change_1_bit, str_2_int, int_2_str
 from shared_funct import enc_str_to_list, msg_with_errors, dec_list_to_str,\
-                        diff_in_mess, log
+                        diff_in_mess, log, read_file
 
 import numpy as np
 
@@ -60,7 +60,10 @@ def _test_code_decode():
     '€'  U+020AC  3 byte  b'\xe2\x82\xac'        →  11100010 10000010 10101100
     '𝄞'  U+1D11E  4 byte  b'\xf0\x9d\x84\x9e'   →  11110000 10011101 10000100 10011110 
     """
-    text="A§€𝄞"
+    text=read_file('inferno_c1.txt')
+    print(len(text))
+    text=text[:380]
+    #text="A§€𝄞"
     #text='la pazza gioia di essere sani'
 #     text='''Probabilmente uscì chiudendo dietro a se la porta verde
 # Qualcuno si era alzato a preparargli in fretta un caffè d'orzo
@@ -70,7 +73,7 @@ def _test_code_decode():
     
     #print(enc)
     # inserting errors
-    rate=0.04
+    rate=0.6
     ret_mess, flipped=msg_with_errors(rate, enc)
     #decode
     r_text, avg_td= dec_list_to_str(ret_mess)
