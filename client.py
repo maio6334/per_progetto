@@ -78,7 +78,7 @@ f=None
 s=connect_2_server()
 
 for i in range(num_msg):
-    text, f= get_message(f,input_f,is_internal_input)
+    text = get_message(input_f,is_internal_input)
     for r in range(num_rept):
         for c in ['H','L']:
             print(f'info: n={i}\trepetition={r}\tcoding={c}\terror rate={error_rate}\tmesg={text}')
@@ -95,9 +95,9 @@ for i in range(num_msg):
             print(f'mesg n={i},repetion={r},coding={c},check={check}\n')
 
 #closing 
-if f is not None:
-    f.close()
-    print(f'file {input_f} was closed')
+# if f is not None:
+#     f.close()
+#     print(f'file {input_f} was closed')
 if s is not None:
     s.close()
 exit()

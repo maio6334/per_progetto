@@ -9,7 +9,7 @@ Used for:
 
 
 Functions:
-    validate_cmdline : analize and checks command line parameters 
+    manage_cmdline : analize and checks command line parameters 
     _dummy_rnd_gen   : generates dummy values used by _log_test
     _log_test        : test logger functionality
     enc_str_to_list  : using hamming lib, code every char from a utf-8 string, returns a list
@@ -17,6 +17,7 @@ Functions:
     msg_with_errors  : introduces errors flipping single bit in a list of encoded chars, returns list corrupted and total flipped bits
     diff_in_mess     : compares string, returns number of differences
     log              : log events in a csv format to a file  
+    ber_to_snr       : converts a value of Bit erorr rate to a Signal to noise ratio
 Date: 
     AA 2025/2026
 
@@ -37,6 +38,7 @@ import random
 import socket
 import hamming_codec  as hc
 from timeit import timeit
+import math
 
 # local modules
 from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE, TIMING_ITERATIONS
@@ -52,6 +54,11 @@ MAX_REPT=100
 INTERNAL=True
 
 class GetDetailedInfo(argparse.Action):
+     """
+    Class used by manage_cmdline to generate a verbose descrtiption when --verbose in command line
+    Prints all docstrings
+    """
+
     def __init__(self,option_strings,dest,nargs, **kwargs):
         #print(f'init class nargs{nargs}\n help{help}')
         super().__init__(option_strings,dest,nargs, **kwargs)
@@ -223,55 +230,51 @@ def _log_test(n_msg:int,e_rate:float, log_f:str)-> None:
         logger.info(msg)
 
 
-def get_next_line(fd)-> str:
+# def get_next_line(fd)-> str:
+#     """
+#     Read line from a text file in a cyclic mode
+
+#     Parameters
+#     ----------
+#     fd
+#         file descriptot
+
+#     Returns
+#     -------
+#     l
+#         current line
+
+#     """
+#     if l:=fd.readline():
+#         return l
+#     else:
+#         fd.seek(0)
+#         return fd.readline()
+
+def get_message(input_f:str | None)-> str:
     """
-    Read line from a text file in a cyclic mode
+    Returns a string reading all text from input_f , if input_f is None return an internal string (DEF_MSG)
 
     Parameters
     ----------
-    fd
-        file descriptot
-
-    Returns
-    -------
-    l
-        current line
-
-    """
-    if l:=fd.readline():
-        return l
-    else:
-        fd.seek(0)
-        return fd.readline()
-
-def get_message(f,input_f:str, internal:bool)-> (str,):
-    """
-    returns a string from a text file (input_f) or a internal string (DEF_MSG)
-
-    Parameters
-    ----------
-    f
-        used to store file descriptor 
     input_f
-        text file full path from command line | None if internal
-    internal
-        boolean , select the source of text
+        text file full path from command line | None 
 
     Returns
     -------
     line
-        current line
-    f
-        file descriptor
+        text as a string
+
     """
     #global f
-    if internal:
-        line=DEF_MSG
+    if input_f is None:
+        l=DEF_MSG
     else:
-        if f is None:
-            f=open(input_f, encoding="utf-8")
-        line= get_next_line(f)   
-    return line.rstrip('\n'),f
+        # if f is None:
+        #     f=open(input_f, encoding="utf-8")
+        # line= get_next_line(f)   
+        l=read_file(input_f)
+    return l
 
 
 def connect_2_server():
@@ -417,6 +420,21 @@ def diff_in_mess(initial:str, final:str)-> int:
     return diff
 
 def log(event:dict,log_f:str)-> None:
+        """
+    log appending event to a file
+
+    Parameters
+    ----------
+    event
+        dictionary of data
+    log_f
+        path to log file
+
+    Returns
+    -------
+    None
+
+    """
     FORMAT='%(asctime)s,%(message)s,%(rate)s,%(diff)s,%(avg_te)s,%(avg_td)s'
     logger = logging.getLogger(__name__) # maybe None but it's a reccommended practice maybe to distinguish logs from differente modules
     logging.basicConfig(filename=log_f, filemode='a',encoding='utf-8', \
@@ -424,11 +442,65 @@ def log(event:dict,log_f:str)-> None:
     logger.info(event['coding'],extra=event)
 
 def read_file(fullp:str)-> str:
-   #manca il try e la docstring
-    with open(fullp,encoding='utf-8') as f:
-        l=f.read()
-        #print(l)
+    """
+    Open file for readind, close program if not utf-8 encoded file, returs file contents as signle string
+
+    Compares two string by position, counts how many corrispondent chars differs
+
+    Parameters
+    ----------
+    fullp
+        string  path to file
+
+    Returns
+    -------
+    l
+        a string containg all the lines
+    """
+    try:
+        with open(fullp,encoding='utf-8') as f:
+            l=f.read()
+            #print(l)
+    except UnicodeDecodeError as e:
+        print(f'error in encodig utf-8 file {fullp}\ndetected {e.reason}\nClosing program')
+        exit()
     return l
+
+def ber_to_snr(error_rate:float)-> float:
+    """
+    converts ber in snr
+
+    Parameters
+    ----------
+    error_rate
+        bit error rate = #bit wrong / #total bit
+
+    Returns
+    -------
+    snr
+        signal to noise ratio as 10*log((total - errors)/ errors) 
+
+    """
+    snr=10*math.log10((1/error_rate)-1)
+    return snr
+
+def _test_ber_to_snr():
+    values=[
+        (0.01,19.956),
+        (0.02,16.902),
+        (0.03,15.097),
+        (0.04,13.802),
+        (0.05,12.788),
+        (0.06,11.950),
+        (0.07,11.234),
+        (0.08,10.607),
+        (0.09,10.048),
+        (0.10,9.542),
+        (0.11,9.080)
+    ]
+    for v in values:
+        assert abs(ber_to_snr(v[0])-v[1])< 0.001
+    print('test ber_to_snr passed')
 
 def main():
     pass
@@ -441,7 +513,13 @@ def main():
     )
     _log_test(n_msg,e_rate, log_f)
     '''
-    read_file('./inferno_c1.txt')
+    #read_file('./inferno_c1.txt')
+    f='/home/maurizio/Desktop/progit.pdf'
+    #f='./inferno_c1.txt'
+    read_file(f)
+    
+    #_test_ber_to_snr()
+
 
 if __name__ == "__main__":
     main()
