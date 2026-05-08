@@ -54,7 +54,7 @@ MAX_REPT=100
 INTERNAL=True
 
 class GetDetailedInfo(argparse.Action):
-     """
+    """
     Class used by manage_cmdline to generate a verbose descrtiption when --verbose in command line
     Prints all docstrings
     """
@@ -67,7 +67,7 @@ class GetDetailedInfo(argparse.Action):
         print(sys.modules['__main__'].__doc__)
         parser.exit()
 
-def manage_cmdline(descr:str)-> (int,float,str,str,bool):
+def manage_cmdline(descr:str)-> (int,int,float,str,str): #bool):
     """
     Parse command line argument checking type for numeric inputs
     Add help funcionality to command line
@@ -92,10 +92,10 @@ def manage_cmdline(descr:str)-> (int,float,str,str,bool):
         file to log events
     file_input
         full path of input file from command line ( None if input is missing)
-    internal
-        True if input file is missing use internal string
-
     """
+    #internal
+    #    True if input file is missing use internal string
+
 
     parser = argparse.ArgumentParser(description=descr, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("-i","--input", default=None, help="Path to the input text file (default: built-in default string)")
@@ -123,9 +123,9 @@ def manage_cmdline(descr:str)-> (int,float,str,str,bool):
             print(f"Error: Input file \"{file_input}\" does\'nt exists.")
             sys.exit()
         
-        internal= False
+        #internal= False
     else:
-        internal=True
+        #internal=True
         file_input=None
 
     log_file= '/'.join([script_dir._str,args.log]) 
@@ -156,7 +156,7 @@ def manage_cmdline(descr:str)-> (int,float,str,str,bool):
     # print(err_rate)
     # print(log_file)
     # print(file_input)
-    return (num_msg, num_repetition, err_rate,log_file,file_input, internal)
+    return (num_msg, num_repetition, err_rate,log_file,file_input) #, internal)
 
 def _dummy_rnd_gen(d:int)->(int,bool,bool):
     """
@@ -251,7 +251,7 @@ def _log_test(n_msg:int,e_rate:float, log_f:str)-> None:
 #         fd.seek(0)
 #         return fd.readline()
 
-def get_message(input_f:str | None)-> str:
+def get_text_message(input_f:str | None)-> str:
     """
     Returns a string reading all text from input_f , if input_f is None return an internal string (DEF_MSG)
 
@@ -307,7 +307,7 @@ def enc_str_to_list(text:str)->list:
 
     """
     enc=[]
-    dur=0
+    dur=0 # duration of an event
     for i in range(len(text)):
         l=len(text[i].encode())*8
         c_ord=ord(text[i])
@@ -420,7 +420,7 @@ def diff_in_mess(initial:str, final:str)-> int:
     return diff
 
 def log(event:dict,log_f:str)-> None:
-        """
+    """
     log appending event to a file
 
     Parameters

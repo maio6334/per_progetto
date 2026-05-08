@@ -53,7 +53,7 @@ import pickle
 import matplotlib
 
 # local modules 
-from shared_funct import manage_cmdline, get_message, connect_2_server
+from shared_funct import manage_cmdline, get_text_message, connect_2_server
 from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE 
 
 #validate input
@@ -74,30 +74,24 @@ if TESTING:
     num_msg=1
     num_rept=2
 
-f=None
 s=connect_2_server()
+text = get_text_message(input_f)
 
-for i in range(num_msg):
-    text = get_message(input_f,is_internal_input)
-    for r in range(num_rept):
-        for c in ['H','L']:
-            print(f'info: n={i}\trepetition={r}\tcoding={c}\terror rate={error_rate}\tmesg={text}')
-            mesg={'i':i,'coding':c,'er':error_rate,'text':text}
-            payload = pickle.dumps(mesg)
-            s.sendall(payload) # defualt utf-8
-            #a=s.recv(BUFFER_SIZE)
-            rmsg=pickle.loads(s.recv(BUFFER_SIZE))
-            rtext=rmsg['text']
-            if text==rtext:
-                check='passed'
-            else:
-                check='fail'
-            print(f'mesg n={i},repetion={r},coding={c},check={check}\n')
+for r in range(num_rept):
+    for c in ['H','L']:
+        print(f'info: n={i}\trepetition={r}\tcoding={c}\terror rate={error_rate}\tmesg={text}')
+        mesg={'i':i,'coding':c,'er':error_rate,'text':text}
+        payload = pickle.dumps(mesg)
+        s.sendall(payload) # defualt utf-8
+        #a=s.recv(BUFFER_SIZE)
+        rmsg=pickle.loads(s.recv(BUFFER_SIZE))
+        rtext=rmsg['text']
+        if text==rtext:
+            check='passed'
+        else:
+            check='fail'
+        print(f'mesg n={i},repetion={r},coding={c},check={check}\n')
 
-#closing 
-# if f is not None:
-#     f.close()
-#     print(f'file {input_f} was closed')
 if s is not None:
     s.close()
 exit()
