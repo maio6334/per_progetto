@@ -53,7 +53,7 @@ import pickle
 import matplotlib
 
 # local modules 
-from shared_funct import manage_cmdline, get_text_message, connect_2_server
+from shared_funct import manage_cmdline, get_text_message, connect_2_server,count_difference
 from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE 
 
 #validate input
@@ -67,8 +67,8 @@ User can configure the number of messages to send and the error injection rate
 Client attemps to detect and correct errors logging each event to a file
 '''
 
-num_msg,num_rept, error_rate, log_f, input_f, is_internal_input = manage_cmdline(descr)
-print(num_msg,num_rept, error_rate, log_f, input_f, is_internal_input)
+input_f, log_f, num_rept, error_rate  = manage_cmdline(descr)
+
 
 if TESTING:
     num_msg=1
@@ -79,81 +79,20 @@ text = get_text_message(input_f)
 
 for r in range(num_rept):
     for c in ['H','L']:
-        print(f'info: n={i}\trepetition={r}\tcoding={c}\terror rate={error_rate}\tmesg={text}')
-        mesg={'i':i,'coding':c,'er':error_rate,'text':text}
+        print(f'info:coding={c}\terror rate={error_rate}\tmesg={text}')
+        mesg={'coding':c,'er':error_rate,'text':text}
         payload = pickle.dumps(mesg)
         s.sendall(payload) # defualt utf-8
         #a=s.recv(BUFFER_SIZE)
         rmsg=pickle.loads(s.recv(BUFFER_SIZE))
         rtext=rmsg['text']
+        err=count_difference(text,rtext)
         if text==rtext:
             check='passed'
         else:
-            check='fail'
-        print(f'mesg n={i},repetion={r},coding={c},check={check}\n')
+            check=f'total difference ={err}'
+        print(f'mesg coding:{c}, check:{check}\n')
 
 if s is not None:
     s.close()
 exit()
-
-
-
-
-
-
-
-
-
-
-
-
-""" class Controller:
-    selectedfile=""
-    currentcmd=""
-    filelist={}
-    cmd=""
-    cmd_value=""
-    def __init_(self):
-        pass
-
-
-    def get_command(self)-> None:       
-        valid=False
-        while not(valid):
-            os.system('clear')
-            _print_choices()
-            cmd = input(f"\nSelect a command -> ") 
-            valid, cm1, cm2 =verify_command(cmd)
-            if not(valid):
-                print(f'command unknown :{cmd}')
-                time.sleep(3)
-        self.cmd=cm1
-        self.cmd_value= cm2       
-
-def cmd_res(cm1 :str,val: str | list| dict)-> None:
-    resp=""
-    match cm1:
-        case "l":
-            print_file_dic(val)
-        case "r":
-            print("data read :")
-
-        case _: 
-            print("unknown command ")
-            
-    return None
-
-
-
-def end_prog(s,val=0):
-    s.close()
-    sys.exit(val)
-
-
-
-#check number of parameters
-if (len(sys.argv) < 2):
-    my.usage_info()
-
-count =0
-"""

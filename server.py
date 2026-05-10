@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 """
 Server side module of a two-component application for evaluating Hamming and LDPC error correction algorithms.
 
@@ -50,7 +51,7 @@ import random
 
 # local modules and functions
 from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE 
-from shared_funct import GetDetailedInfo
+from shared_funct import GetDetailedInfo, error_in_text
 #from commonhelp import verify_command, txt_file_2_dic
 
 def server_activate():
@@ -73,6 +74,7 @@ def stop_loop():
 descr=\
 '''
 Server side module of a two-component application for evaluating Hamming and LDPC error correction algorithms.
+CTRL +C to stop
 '''
 
 parser = argparse.ArgumentParser(description=descr, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -93,7 +95,7 @@ while not stop:
     try:
         #raise
         conn, addr = serv.accept()
-        print(f'connected from {addr}')
+        print(f'now connected from {addr}')
         count=0
         conn_count+=1
          
@@ -114,10 +116,16 @@ while not stop:
                 msg=pickle.loads(d)
                 count+=1
                 print(f'{count} -received {msg}')
+                if msg['coding']=='H':
+                    #  insert error routine
+                    pass
+                    msg['text']=error_in_text( msg['text'], msg['er'])
+                   
                 conn.sendall(pickle.dumps(msg))
                 print(f'{count} - send back {msg}')
             except Exception as e:
-                print(f'error starting server.\n Closing program{__file__}')  
+                print(f'server error.\n closing program{__file__}')
+                exit() 
 
 serv.close() # close the socket
 print(f'Server down.\nManaged {conn_count} connections')

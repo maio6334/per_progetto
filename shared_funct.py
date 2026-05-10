@@ -9,7 +9,7 @@ Used for:
 
 
 Functions:
-    manage_cmdline : analize and checks command line parameters 
+    manage_cmdline   : analize and checks command line parameters 
     _dummy_rnd_gen   : generates dummy values used by _log_test
     _log_test        : test logger functionality
     enc_str_to_list  : using hamming lib, code every char from a utf-8 string, returns a list
@@ -18,6 +18,8 @@ Functions:
     diff_in_mess     : compares string, returns number of differences
     log              : log events in a csv format to a file  
     ber_to_snr       : converts a value of Bit erorr rate to a Signal to noise ratio
+    error_in_text    : XXXX
+    count_difference : YYYY
 Date: 
     AA 2025/2026
 
@@ -44,14 +46,17 @@ import math
 from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE, TIMING_ITERATIONS
 
 # local constants
-DEF_MSG='All work and no play makes Jack a dull boy' # 'My mama always said, Life was like a box of chocolates; you never know what you’re gonna get.'
+DEF_MSG=    '"A§€𝄞.My mama always said: "Life was like a box of chocolates; you never know what you’re gonna get."'
+ERR_DEF_MSG='"A§€𝄞.My lala always said: "Life was like a box of chocolates; you never know what you’re gonna Met."' # 3 errors
 DEF_LOG= 'log.csv'
-DEF_RATE= 0.5
-DEF_MESG=10
-MAX_MESG=50
-DEF_REPT=50
-MAX_REPT=100
-INTERNAL=True
+DEF_ERR_RATE= 0.2
+MIN_ERR_RATE= 0.
+MAX_ERR_RATE= 0.8
+ERR_RATE_NUM_STEP=10
+ERR_RATE_PERC_RANGE=10
+DEF_REPT=100
+MAX_REPT=1_000
+
 
 class GetDetailedInfo(argparse.Action):
     """
@@ -60,7 +65,6 @@ class GetDetailedInfo(argparse.Action):
     """
 
     def __init__(self,option_strings,dest,nargs, **kwargs):
-        #print(f'init class nargs{nargs}\n help{help}')
         super().__init__(option_strings,dest,nargs, **kwargs)
 
     def __call__(self,parser,namespace,values,option_strings=None):
@@ -71,9 +75,9 @@ def manage_cmdline(descr:str)-> (int,int,float,str,str): #bool):
     """
     Parse command line argument checking type for numeric inputs
     Add help funcionality to command line
-    Verify that input file exists and isn't binary type
+    Verify that input file exists and isn't a binary type
     Set defaults when parameter is missing
-    when a numeric parameter is out of range set it to nearest limit
+    controls numeric parameter is in range limits, if not sets it to nearest limit
 
     Parameters
     ----------
@@ -82,27 +86,25 @@ def manage_cmdline(descr:str)-> (int,int,float,str,str): #bool):
 
     Returns
     -------
-    num_msg
-        number of messagges to send
-    num_repetition
-        number of repetition of each message
-    err_rate
-        % of errors in message
-    log_file
-        file to log events
     file_input
         full path of input file from command line ( None if input is missing)
+    log_file
+        file to log events
+    err_rate
+        % of errors in message (BER)
+    num_repetition
+        number of cycles  code /decode to be measured
+
     """
     #internal
     #    True if input file is missing use internal string
 
 
     parser = argparse.ArgumentParser(description=descr, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("-i","--input", default=None, help="Path to the input text file (default: built-in default string)")
-    parser.add_argument("-m","--messages",type=int, default=DEF_MESG,help=f"number of messages to send (default: {DEF_MESG}, max:{MAX_MESG} )")
-    parser.add_argument("-r","--repeat", type=int,default=DEF_REPT,help=f"number of repetition for each message (default: {DEF_REPT}, max:{MAX_REPT} )")
-    parser.add_argument("-e","--error-rate", type=float,default=DEF_RATE,help="Error injection rate, float between 0.0 and 1.0  (default: 0.0)")
+    parser.add_argument("-i","--input", default=None, help="Path to the input text file (if missing program uses a built-in string)")
     parser.add_argument("-l","--log", default=DEF_LOG, help="Path to the output log file (default: ./client.log)")
+    parser.add_argument("-e","--error-rate", type=float,default=DEF_ERR_RATE,help=f"Error rate, float between {MIN_ERR_RATE} and {MAX_ERR_RATE} if missing default: {DEF_ERR_RATE})")
+    parser.add_argument("-r","--repeat", type=int,default=DEF_REPT,help=f"number of repetition for code-decode cycle (default: {DEF_REPT}, max:{MAX_REPT} )") 
     parser.add_argument("--verbose", nargs=0,action=GetDetailedInfo, help="Prints the main-module's docstring")
     
     args = parser.parse_args()
@@ -111,7 +113,7 @@ def manage_cmdline(descr:str)-> (int,int,float,str,str): #bool):
 
     if args.input:
         file_input= '/'.join([script_dir._str,args.input]) # rem script_dir is a object
-        #check file exist
+        #check file exist and is text
         try:
             f=open(file_input, encoding="utf-8") 
             try:
@@ -121,11 +123,8 @@ def manage_cmdline(descr:str)-> (int,int,float,str,str): #bool):
                 sys.exit()
         except FileNotFoundError:
             print(f"Error: Input file \"{file_input}\" does\'nt exists.")
-            sys.exit()
-        
-        #internal= False
+            sys.exit()     
     else:
-        #internal=True
         file_input=None
 
     log_file= '/'.join([script_dir._str,args.log]) 
@@ -149,14 +148,10 @@ def manage_cmdline(descr:str)-> (int,int,float,str,str): #bool):
         return ret
 
 
-    num_msg=range_validate('--messages',args.messages,DEF_MESG,MAX_MESG)
     num_repetition=range_validate('--repeat',args.repeat,DEF_REPT,MAX_REPT)
-    err_rate =range_validate('--error-rate',args.error_rate,0.0,1.0)  # !! Parser translate - with _
-    # print(num_msg)
-    # print(err_rate)
-    # print(log_file)
-    # print(file_input)
-    return (num_msg, num_repetition, err_rate,log_file,file_input) #, internal)
+    err_rate =range_validate('--error-rate',args.error_rate,MIN_ERR_RATE,MAX_ERR_RATE)  # !! Parser translate - with _
+
+    return (file_input, log_file,num_repetition, err_rate) 
 
 def _dummy_rnd_gen(d:int)->(int,bool,bool):
     """
@@ -502,6 +497,17 @@ def _test_ber_to_snr():
         assert abs(ber_to_snr(v[0])-v[1])< 0.001
     print('test ber_to_snr passed')
 
+def error_in_text(t:str, er:float)->str:
+    pass
+    return ERR_DEF_MSG
+
+def count_difference(ini:str, fin:str)->int:
+    errors=0
+    for i in range(len(ini)):
+        if ini[i]!=fin[i]:
+            errors+=1
+    return errors
+
 def main():
     pass
     #test log function
@@ -514,7 +520,7 @@ def main():
     _log_test(n_msg,e_rate, log_f)
     '''
     #read_file('./inferno_c1.txt')
-    f='/home/maurizio/Desktop/progit.pdf'
+    #f='/home/maurizio/Desktop/progit.pdf'
     #f='./inferno_c1.txt'
     read_file(f)
     
@@ -522,4 +528,5 @@ def main():
 
 
 if __name__ == "__main__":
+    print(hc.__file__)
     main()
