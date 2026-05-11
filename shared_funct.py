@@ -20,6 +20,8 @@ Functions:
     ber_to_snr       : converts a value of Bit erorr rate to a Signal to noise ratio
     error_in_text    : XXXX
     count_difference : YYYY
+    recv_witch_header:
+    send_with_header
 Date: 
     AA 2025/2026
 
@@ -41,6 +43,8 @@ import socket
 import hamming_codec  as hc
 from timeit import timeit
 import math
+import struct
+import pickle
 
 # local modules
 from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE, TIMING_ITERATIONS
@@ -342,7 +346,7 @@ def msg_with_errors(rate :float, message:list) -> (list, int):
     for i in range(len(message)):
         split_pos.append(split_pos[i]+len(message[i]))
     print(f'rate={rate}, total_bits={total_bits},num_err={num_err}')
-    rng = np.random.default_rng(12345) # init random generator
+    rng = np.random.default_rng() # init random generator
     pos_err = rng.integers(low=0, high=total_bits-1, size=num_err)
     #pos_err=[69,22,78]
     for pos in pos_err:
@@ -379,7 +383,7 @@ def dec_list_to_str(message:list)-> str:
         dur+= timeit(lambda: hc.decode(imsg, l), number=TIMING_ITERATIONS)
         try:
             r.append(chr(int(d,2)))
-        except ValueError:
+        except (ValueError,OverflowError): # overflow detected when int is not a unicode value
             print(f'error decoding character in position {i} , inserting X instead', file=sys.stderr)
             r.append('X')
     r=''.join(r)
@@ -497,7 +501,7 @@ def _test_ber_to_snr():
         assert abs(ber_to_snr(v[0])-v[1])< 0.001
     print('test ber_to_snr passed')
 
-def error_in_text(t:str, er:float)->str:
+def _error_in_text(t:str, er:float)->str:
     pass
     return ERR_DEF_MSG
 
@@ -526,6 +530,79 @@ def main():
     
     #_test_ber_to_snr()
 
+def send_with_header(s:int,payload)->None:
+    """
+    Send a payload to a socket, needed when payload's length > BUFFER_SIZE to 
+
+    Parameters
+    ----------
+    s
+        socket
+
+    payload
+        data to trasmit
+
+    Returns
+    -------
+    None
+    """   
+    header=struct.pack('>I', len(payload)) # unsigned int 4 bytes
+    s.sendall(header+ payload)     
+
+class ConnectionClosed(ConnectionError):
+    "service class to export exception to server"
+    pass
+
+class ConnectionLost(ConnectionError):
+    "service class to export exception to server"
+    pass
+
+def _recv_bytes(s:int, l:int)->bytes:
+    """
+    Reads l bytes from socket
+    
+    Parameters
+    ----------
+    s
+        socket
+    l
+        number of bytes to read f
+
+    Returns
+    -------
+    buffer
+         bytes read from socket 
+    """  
+    buffer = b''
+    while len(buffer) < l:
+        try:
+            fragment = s.recv(min(BUFFER_SIZE, l- len(buffer)))
+            if not fragment:
+                raise ConnectionClosed("Connection closed")
+            buffer += fragment
+        except (ConnectionResetError,TimeoutError):
+                raise ConnectionError('Connection lost')
+    return buffer
+    
+
+def recv_witch_header(s)->bytes:
+    """
+    Receive a message from a socket, first gets message lenght in bytes from message header then gets data
+    
+    Parameters
+    ----------
+    s
+        socket
+
+    Returns
+    -------
+    data
+        payload (a dictionary)
+    """   
+    get_len=_recv_bytes(s,4)
+    l=struct.unpack('>I',get_len)[0]
+    data=_recv_bytes(s,l)
+    return data
 
 if __name__ == "__main__":
     print(hc.__file__)

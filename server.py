@@ -47,11 +47,15 @@ import socket
 import os
 import pickle
 import signal # to handle manual shutdown
-import random
+
+
 
 # local modules and functions
 from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE 
-from shared_funct import GetDetailedInfo, error_in_text
+from shared_funct import GetDetailedInfo, msg_with_errors,\
+    send_with_header, recv_witch_header ,\
+        ConnectionClosed, ConnectionLost
+
 #from commonhelp import verify_command, txt_file_2_dic
 
 def server_activate():
@@ -93,9 +97,8 @@ conn=None
 
 while not stop:
     try:
-        #raise
         conn, addr = serv.accept()
-        print(f'now connected from {addr}')
+        print(f'Connected from {addr}')
         count=0
         conn_count+=1
          
@@ -109,24 +112,31 @@ while not stop:
     with conn:
         while not stop:    
             try:
-                d = conn.recv(BUFFER_SIZE)
-                if not d:
-                    print(f'\nconnection closed from {addr}\n')
-                    break 
+                d=recv_witch_header(conn) #d = conn.recv(BUFFER_SIZE)
+                # if not d:
+                #     print(f'\nconnection closed from {addr}\n')
+                #     break 
                 msg=pickle.loads(d)
                 count+=1
-                print(f'{count} -received {msg}')
+                
                 if msg['coding']=='H':
                     #  insert error routine
-                    pass
-                    msg['text']=error_in_text( msg['text'], msg['er'])
-                   
-                conn.sendall(pickle.dumps(msg))
-                print(f'{count} - send back {msg}')
+                    print(f'{count} - received  {msg}')
+                    rate=msg['er']
+                    enc=msg['enc_text']
+                    ret_mess, flipped=msg_with_errors(rate, enc)
+                    msg['enc_text']=ret_mess
+                    print(f'{count} - send back {msg}')   
+                
+                payload=pickle.dumps(msg)
+                l=len(payload)
+                send_with_header(conn,payload)    #conn.sendall(pickle.dumps(msg))
+            except ConnectionClosed:
+                break
             except Exception as e:
-                print(f'server error.\n closing program{__file__}')
-                exit() 
+                    print(f'Error: {e}\nClosing program{__file__}')
+                    exit() 
 
 serv.close() # close the socket
-print(f'Server down.\nManaged {conn_count} connections')
+print(f'Server is gracefully closed.\nManaged {conn_count} connections')
 

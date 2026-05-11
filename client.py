@@ -52,8 +52,11 @@ import socket
 import pickle
 import matplotlib
 
+
 # local modules 
-from shared_funct import manage_cmdline, get_text_message, connect_2_server,count_difference
+from shared_funct import manage_cmdline, get_text_message,\
+    connect_2_server,count_difference, enc_str_to_list,\
+    dec_list_to_str, send_with_header, recv_witch_header     
 from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE 
 
 #validate input
@@ -70,28 +73,43 @@ Client attemps to detect and correct errors logging each event to a file
 input_f, log_f, num_rept, error_rate  = manage_cmdline(descr)
 
 
-if TESTING:
-    num_msg=1
-    num_rept=2
 
 s=connect_2_server()
 text = get_text_message(input_f)
 
+if TESTING:
+    num_rept=2
+    #text='ABCD'
+    error_rate=0.01
+
+enc_text, avg_te= enc_str_to_list(text)
+#print(enc_text)
+
+
 for r in range(num_rept):
     for c in ['H','L']:
-        print(f'info:coding={c}\terror rate={error_rate}\tmesg={text}')
-        mesg={'coding':c,'er':error_rate,'text':text}
-        payload = pickle.dumps(mesg)
-        s.sendall(payload) # defualt utf-8
-        #a=s.recv(BUFFER_SIZE)
-        rmsg=pickle.loads(s.recv(BUFFER_SIZE))
-        rtext=rmsg['text']
+        #print(f'info:coding={c}\terror rate={error_rate}\tmesg={enc_text}')
+        mesg={'coding':c,'er':error_rate,'enc_text':enc_text}
+        if False:
+            rmsg=mesg
+        else:
+            payload = pickle.dumps(mesg)
+            l=len(payload)
+            send_with_header(s,payload)  # needed ad payload > BUFFER_SIZE # old s.sendall(payload) 
+            rmsg=pickle.loads((recv_witch_header(s))) #rmsg=pickle.loads(s.recv(BUFFER_SIZE))
+        
+        r_enc_text=rmsg['enc_text']
+        rtext, avg_td= dec_list_to_str(r_enc_text)
+
         err=count_difference(text,rtext)
         if text==rtext:
             check='passed'
         else:
             check=f'total difference ={err}'
-        print(f'mesg coding:{c}, check:{check}\n')
+        #print(f'mesg coding:{c}, check:{check}\n')
+        if c=='H':
+            print(c,text)
+            print(c,rtext)
 
 if s is not None:
     s.close()
