@@ -291,7 +291,7 @@ def connect_2_server():
 
 def hamming_enc_str_to_list(text:str)->list:
     """
-    Read an input string, encode every char.Calculate encoding average time of execution, Returns a list containing encoded chars and average time
+    Reads an input string, encode every char.Calculate encoding average time of execution, Returns a list containing encoded chars and average time
 
     Parameters
     ----------
@@ -303,7 +303,7 @@ def hamming_enc_str_to_list(text:str)->list:
     enc
         list of encoded chars
     dur_avg
-
+        average duration in encoding 
     """
     enc=[]
     dur=0 # duration of an event
@@ -314,7 +314,7 @@ def hamming_enc_str_to_list(text:str)->list:
         dur+= timeit(lambda: hc.encode(c_ord,l), number=TIMING_ITERATIONS)
         enc.append(c)
     dur_avg=dur/(TIMING_ITERATIONS * len(text))
-    #print(f'"ENC","HAM",{dur_avg}')
+
     return enc, dur_avg
 
 def msg_with_errors(rate :float, message:list) -> (list, int):
@@ -372,6 +372,9 @@ def hamming_dec_list_to_str(message:list)-> str:
     -------
     r
         string
+    
+    dur_avg
+        average duration decoding
     """
         
     r=[]

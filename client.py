@@ -56,7 +56,8 @@ import matplotlib
 # local modules 
 from shared_funct import manage_cmdline, get_text_message,\
     connect_2_server,count_difference, hamming_enc_str_to_list,\
-    hamming_dec_list_to_str, send_with_header, recv_witch_header     
+    hamming_dec_list_to_str, send_with_header, recv_witch_header, \
+    log     
 from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE 
 
 #validate input
@@ -76,31 +77,33 @@ input_f, log_f, num_rept, error_rate  = manage_cmdline(descr)
 
 s=connect_2_server()
 text = get_text_message(input_f)
+event={} # to log duration 
 
 if TESTING:
     num_rept=2
     #text='ABCD'
-    error_rate=0.03
+    error_rate=0.004
 
 #enc_text, avg_te= hamming_enc_str_to_list(text)
 #print(enc_text)
 
 
 for r in range(num_rept):
+
     for c in ['H','L']:
+        avg_te=0
+        avg_td=0
         if c=="H":
             enc_text, avg_te= hamming_enc_str_to_list(text)
         else:
             enc_text="dummy LPDC"
         #print(f'info:coding={c}\terror rate={error_rate}\tmesg={enc_text}')
         mesg={'coding':c,'er':error_rate,'enc_text':enc_text}
-        if False:
-            rmsg=mesg
-        else:
-            payload = pickle.dumps(mesg)
-            l=len(payload)
-            send_with_header(s,payload)  # needed ad payload > BUFFER_SIZE # old s.sendall(payload) 
-            rmsg=pickle.loads((recv_witch_header(s))) #rmsg=pickle.loads(s.recv(BUFFER_SIZE))
+
+        payload = pickle.dumps(mesg)
+        l=len(payload)
+        send_with_header(s,payload)  # needed ad payload > BUFFER_SIZE # old s.sendall(payload) 
+        rmsg=pickle.loads((recv_witch_header(s))) #rmsg=pickle.loads(s.recv(BUFFER_SIZE))
         
         r_enc_text=rmsg['enc_text']
 
@@ -111,12 +114,9 @@ for r in range(num_rept):
         
 
         err=count_difference(text,rtext)
-        if text==rtext:
-            check='passed'
-        else:
-            check=f'total difference ={err}'
-        #print(f'mesg coding:{c}, check:{check}\n')
-        #if c=='H':
+        log({'coding':c,'rate':error_rate,'diff':err, 'avg_te':avg_te, 'avg_td':avg_td},log_f )
+
+        
         print(f"ini {c} {text}" )
         print(f"fin {c} {rtext}\n")
         
