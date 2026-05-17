@@ -28,27 +28,33 @@ print("Number of coded bits:", k)
 ber= np.linspace(0.01, 0.60 , 20)
 snrs=[ber_to_snr(b) for b  in ber]
 
-#code
+
 # from text to flat array
 bits=np.array([ e>>i & 1 for e in text.encode() for i in range(8)])
 # split every byte into columns
 bits2=bits.reshape((-1,k)).T
-snr=snrs[0]
+snr=snrs[0] #test using only one snr
+
+#enccode
+#dur=0
 y = encode(G, bits2, snr, seed=seed)
+#dur+= timeit(lambda: encode(G, bits2, snr, seed=seed), number=TIMING_ITERATIONS)
+#dur_avg=dur/(TIMING_ITERATIONS * len(text))
+
 #decode
-
-
 D = decode(H, y, snr)
+
+# flatting matrix 
 x=[]
 for i in range(D.shape[1]):
     x.append(get_message(G, D[:, i]))
 total=np.concatenate(x) # it is flattened if  axis= none
 # back to linear array
-#tbits=bits2.flatten('F')
+
 tbits=total
-#print(f'bits4 {tbits}')
+
+#from bytearray to text
 a=[]
-a3=[]
 for l in range(len(tbits)//8):
     c=tbits[l*8:8*(l+1)]
     d=0
@@ -57,6 +63,7 @@ for l in range(len(tbits)//8):
     a.append(d)
 text_decoded=bytearray(a).decode() 
 
+#detecting errors
 errors=0
 for c in text:
     if text[i]!=text_decoded[i]:

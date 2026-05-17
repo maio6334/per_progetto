@@ -51,14 +51,17 @@ Version:
 import socket
 import pickle
 import matplotlib
-
+import numpy as np
+from pyldpc import make_ldpc, decode, get_message, encode
 
 # local modules 
 from shared_funct import manage_cmdline, get_text_message,\
     connect_2_server,count_difference, hamming_enc_str_to_list,\
     hamming_dec_list_to_str, send_with_header, recv_witch_header, \
-    log     
-from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE 
+    log, ber_to_snr,ldpc_enc_str_to_array, ldpc_dec_list_to_str       
+
+from costants import LDPC_N, LDPC_D_V, LDPC_D_C # TESTING
+
 
 #validate input
 descr=\
@@ -71,52 +74,74 @@ User can configure the number of messages to send and the error injection rate
 Client attemps to detect and correct errors logging each event to a file
 '''
 
+# commande line param management & defaults
 input_f, log_f, num_rept, error_rate  = manage_cmdline(descr)
 
-
+# create code/decode matrix using LDPC lib
+seed = np.random.RandomState(42)
+H, G = make_ldpc(LDPC_N, LDPC_D_V, LDPC_D_C, seed=seed, systematic=True, sparse=True)
+k = G.shape[1] # k=8 as expected
+#converting BER to SNR
+snr=ber_to_snr(error_rate) 
 
 s=connect_2_server()
 text = get_text_message(input_f)
+
 event={} # to log duration 
 
-if TESTING:
-    num_rept=2
-    #text='ABCD'
-    error_rate=0.004
-
-#enc_text, avg_te= hamming_enc_str_to_list(text)
-#print(enc_text)
-
-
 for r in range(num_rept):
-
     for c in ['H','L']:
         avg_te=0
         avg_td=0
         if c=="H":
-            enc_text, avg_te= hamming_enc_str_to_list(text)
+            encoded, avg_te= hamming_enc_str_to_list(text)
         else:
-            enc_text="dummy LPDC"
-        #print(f'info:coding={c}\terror rate={error_rate}\tmesg={enc_text}')
-        mesg={'coding':c,'er':error_rate,'enc_text':enc_text}
+            # #convert text into matrix
+            # # first from text to flat array
+            # bits=np.array([ e>>i & 1 for e in text.encode() for i in range(8)])
+            # # split every byte into columns
+            # bits_matrix=bits.reshape((-1,k)).T
+            # encoded = encode(G, bits_matrix, snr, seed=seed)
+            # #encoded="dummy LPDC"
+            encoded, avg_te= ldpc_enc_str_to_array(text,G,snr,seed)
+    
+        mesg={'coding':c,'er':error_rate,'enc':encoded}
 
         payload = pickle.dumps(mesg)
         l=len(payload)
         send_with_header(s,payload)  # needed ad payload > BUFFER_SIZE # old s.sendall(payload) 
         rmsg=pickle.loads((recv_witch_header(s))) #rmsg=pickle.loads(s.recv(BUFFER_SIZE))
         
-        r_enc_text=rmsg['enc_text']
+        r_enc=rmsg['enc']
 
         if c=="H":
-            rtext, avg_td= hamming_dec_list_to_str(r_enc_text)
+            rtext, avg_td= hamming_dec_list_to_str(r_enc)
         else:
-            rtext="dummy LPDC"
+            # #decode
+            # D = decode(H, r_enc, snr)
+            # #extract message
+            # # flatting matrix 
+            # x=[]
+            # for i in range(D.shape[1]): # loop on columns
+            #     x.append(get_message(G, D[:, i]))
+            # rbits=np.concatenate(x) # it is flattened if  axis= none
+
+            # #from bytearray to text
+            # bytelist=[]
+            # for l in range(len(rbits)//8):
+            #     array_bit=rbits[l*8:8*(l+1)]
+            #     byte=0
+            #     for i in range(8):
+            #         byte=byte |(array_bit[i]<<i)
+            #     bytelist.append(byte)
+            # rtext=bytearray(bytelist).decode() 
+            # #rtext="dummy LPDC"
+            rtext, avg_td=ldpc_dec_list_to_str(r_enc,H,G,snr)
         
 
         err=count_difference(text,rtext)
         log({'coding':c,'rate':error_rate,'diff':err, 'avg_te':avg_te, 'avg_td':avg_td},log_f )
-
-        
+  
         print(f"ini {c} {text}" )
         print(f"fin {c} {rtext}\n")
         

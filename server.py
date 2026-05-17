@@ -65,7 +65,7 @@ def server_activate():
         serv.bind((TCP_IP, TCP_PORT))
         serv.listen(1)
         print(f'Server is listening on {TCP_IP};{TCP_PORT}')
-        #raise testing except
+        
     except Exception as e:
         print(f'\nGeneric error starting server.\n\nClosing {__file__}\n')
         exit(0)
@@ -123,9 +123,9 @@ while not stop:
                     #  insert error routine
                     print(f'{count} - received  {msg}')
                     rate=msg['er']
-                    enc=msg['enc_text']
+                    enc=msg['enc']
                     ret_mess, flipped=msg_with_errors(rate, enc)
-                    msg['enc_text']=ret_mess
+                    msg['enc']=ret_mess
                     print(f'{count} - send back {msg}')   
                 
                 payload=pickle.dumps(msg)

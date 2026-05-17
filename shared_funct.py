@@ -10,8 +10,6 @@ Used for:
 
 Functions:
     manage_cmdline          : analize and checks command line parameters 
-    _dummy_rnd_gen          : generates dummy values used by _log_test
-    _log_test               : test logger functionality
     hamming_enc_str_to_list : using hamming lib, code every char from a utf-8 string, returns a list
     hamming_dec_list_to_str : using hamming lib, decode a list of encodeded char, returns string
     msg_with_errors         : introduces errors flipping single bit in a list of encoded chars, returns list corrupted and total flipped bits
@@ -45,20 +43,20 @@ from timeit import timeit
 import math
 import struct
 import pickle
+from pyldpc import make_ldpc, decode, get_message, encode
 
 # local modules
-from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE, TIMING_ITERATIONS
-
+from costants import TCP_IP,TCP_PORT ,BUFFER_SIZE, TIMING_ITERATIONS
+                    
 # local constants
 DEF_MSG=    '"A§€𝄞.My mama always said: "Life was like a box of chocolates; you never know what you’re gonna get."'
-ERR_DEF_MSG='"A§€𝄞.My lala always said: "Life was like a box of chocolates; you never know what you’re gonna Met."' # 3 errors
 DEF_LOG= 'log.csv'
 DEF_ERR_RATE= 0.04
 MIN_ERR_RATE= 0.0001
 MAX_ERR_RATE= 0.1
 ERR_RATE_NUM_STEP=10
 ERR_RATE_PERC_RANGE=10
-DEF_REPT=100
+DEF_REPT=2
 MAX_REPT=1_000
 
 
@@ -157,98 +155,7 @@ def manage_cmdline(descr:str)-> (int,int,float,str,str): #bool):
 
     return (file_input, log_file,num_repetition, err_rate) 
 
-def _dummy_rnd_gen(d:int)->(int,bool,bool):
-    """
-    Generates dummy pseudo-random values used by _log_test
 
-    Parameters
-    ----------
-    d
-        duration
-
-    Returns
-    -------
-    d
-        duration modified
-    e_d
-       detect an error
-    e_c
-        correct an error 
-    """
-    d+=random.randint(-5,5)
-    e_d=random.randint(0,1)
-    if e_d:
-        e_c=random.randint(0,1)
-    else:
-        e_c=0
-    return (d,e_d,e_c)
-
-def _log_test(n_msg:int,e_rate:float, log_f:str)-> None:
-    """
-    Logs to log_f messages to test logger functionality
-
-    messagge formats:
-        time,send,id_mesg,tipo_codifica,durata_cod,err_rate 
-        tempo,recv,id_mesg,tipo_codifica,durata_dec, err_ril, err_corr
-    Parameters
-    ----------
-    n_mesg
-        number of messages to log
-    e_rate
-        error rate
-    log_f
-        log file full path
-
-    Returns
-    -------
-    None
-    """
-    # opening log
-    logger = logging.getLogger(__name__) # maybe None but it's a reccommended practice maybe to distinguish logs from differente modules
-    logging.basicConfig(filename=log_f, filemode='a',encoding='utf-8', \
-    format='%(asctime)s,%(message)s',level=logging.INFO) # datefmt='%m/%d/%Y %I:%M:%S %p',
-
-    for i in np.arange(n_msg):
-        start=time.perf_counter_ns()
-        print(f'dummy {i}')
-        end=time.perf_counter_ns()
-        delta=end-start
-        msg=f"'send',{i},'HAM',{delta},{e_rate},NaN"
-        logger.info(msg)
-
-        delta, *rest = _dummy_rnd_gen(delta)
-        msg=f"'send',{i},'LDPC',{delta},{e_rate},NaN"
-        logger.info(msg)
-
-        delta,e_detect,e_correct = _dummy_rnd_gen(delta)
-        msg=f"'recv',{i},'HAM',{delta},{e_detect},{e_correct}"
-        logger.info(msg)
-
-        delta,e_detect,e_correct = _dummy_rnd_gen(delta)   
-        msg=f"'recv',{i},'LDPC',{delta},{e_detect},{e_correct}"
-        logger.info(msg)
-
-
-# def get_next_line(fd)-> str:
-#     """
-#     Read line from a text file in a cyclic mode
-
-#     Parameters
-#     ----------
-#     fd
-#         file descriptot
-
-#     Returns
-#     -------
-#     l
-#         current line
-
-#     """
-#     if l:=fd.readline():
-#         return l
-#     else:
-#         fd.seek(0)
-#         return fd.readline()
 
 def get_text_message(input_f:str | None)-> str:
     """
@@ -265,13 +172,10 @@ def get_text_message(input_f:str | None)-> str:
         text as a string
 
     """
-    #global f
+
     if input_f is None:
         l=DEF_MSG
-    else:
-        # if f is None:
-        #     f=open(input_f, encoding="utf-8")
-        # line= get_next_line(f)   
+    else: 
         l=read_file(input_f)
     return l
 
@@ -288,6 +192,87 @@ def connect_2_server():
         print('Timeout connection to server. Exiting')
         exit(2)      
     return s
+
+def ldpc_enc_str_to_array(text:str,G:np.ndarray,snr:float,seed:int)->(np.ndarray,float):
+    """
+    Reads an input string,converts it to a matrix the encode using a LDPC matrix adding a noise 
+    Calculate encoding average time of execution, Returns a matrix containing encoded chars and average time
+
+    Parameters
+    ----------
+    text
+        text message to encode
+    G
+        encoding matrix
+    snr 
+        signal to noise ratio 
+    seed
+        random value required to introduce a non deterministic error
+
+    Returns
+    -------
+    encoded
+        matrix containing the encoded text whit a noise
+    dur_avg
+        average duration in encoding 
+    """
+    k = G.shape[1] # k=8 as expected
+    #convert text into matrix
+    # first from text to flat array
+    bits=np.array([ e>>i & 1 for e in text.encode() for i in range(8)])
+    # split every byte into columns
+    bits_matrix=bits.reshape((-1,k)).T
+    encoded = encode(G, bits_matrix, snr, seed=seed)
+    dur= timeit(lambda: encode(G, bits_matrix, snr, seed=seed), number=TIMING_ITERATIONS)
+    dur_avg=dur/(TIMING_ITERATIONS * len(text))
+    
+    return encoded, dur_avg
+
+
+def ldpc_dec_list_to_str(r_enc:np.ndarray,H:np.ndarray,G:np.ndarray,snr:float)-> (str,float):
+    """
+    Using pyldpc lib, decode a list of encodeded char into a string
+
+    Parameters
+    ----------
+    r_enc
+        matrix encoded
+    H,G
+        decoding and coding matrices
+    snr
+        bit error rate
+
+    Returns
+    -------
+    rtext, 
+        decoded string 
+    
+    dur_avg
+        average duration decoding
+    """
+    #decode
+    D = decode(H, r_enc, snr)
+    dur= timeit(lambda: decode(H, r_enc, snr), number=TIMING_ITERATIONS)
+    #extract message
+    # flatting matrix 
+    x=[]
+    for i in range(D.shape[1]): # loop on columns
+        x.append(get_message(G, D[:, i]))
+    rbits=np.concatenate(x) # it is flattened if  axis= none
+
+    #from bytearray to text
+    bytelist=[]
+    for l in range(len(rbits)//8):
+        array_bit=rbits[l*8:8*(l+1)]
+        byte=0
+        for i in range(8):
+            byte=byte |(array_bit[i]<<i)
+        bytelist.append(byte)
+    rtext=bytearray(bytelist).decode() 
+    dur_avg=dur/(TIMING_ITERATIONS * len(rtext))
+    #rtext="dummy LPDC"
+    return rtext, dur_avg
+
 
 def hamming_enc_str_to_list(text:str)->list:
     """
@@ -484,38 +469,7 @@ def ber_to_snr(error_rate:float)-> float:
 
     """
     snr=10*math.log10((1/error_rate)-1)
-    return snr
-
-def _test_ber_to_snr():
-    values=[
-        (0.01,19.956),
-        (0.02,16.902),
-        (0.03,15.097),
-        (0.04,13.802),
-        (0.05,12.788),
-        (0.06,11.950),
-        (0.07,11.234),
-        (0.08,10.607),
-        (0.09,10.048),
-        (0.10,9.542),
-        (0.11,9.080)
-    ]
-    for v in values:
-        assert abs(ber_to_snr(v[0])-v[1])< 0.001
-    print('test ber_to_snr passed')
-
-def _error_in_text(t:str, er:float)->str:
-    pass
-    return ERR_DEF_MSG
-
-def _test_count_difference():
-    while True:
-        i=input("stringa i")
-        f=input("stringa f")
-        if i=="":
-            exit()
-        print("differnze=",count_difference(i,f))
-    
+    return snr   
 
 def count_difference(ini:str, fin:str)->int:
     """
@@ -545,7 +499,6 @@ def count_difference(ini:str, fin:str)->int:
         if ini[i]!=fin[i]:
             errors+=1
     return errors
-
 
 def send_with_header(s:int,payload)->None:
     """
@@ -622,24 +575,11 @@ def recv_witch_header(s)->bytes:
     return data
 
 def main():
-    pass
-    #test log function
-    '''
-    #messagge formats
-    #every messag is repeated num_rept times
-    #tempo,send,n_mesg,tipo_codifica,durata_cod,err_rate 
-    #tempo,recv,n_mesg,tipo_codifica,durata_dec, err_ril, err_corr
-    )
-    _log_test(n_msg,e_rate, log_f)
-    '''
     #read_file('./inferno_c1.txt')
     #f='/home/maurizio/Desktop/progit.pdf'
     #f='./inferno_c1.txt'
     #read_file(f)
-    _test_count_difference()
-    #_test_ber_to_snr()
-
-
+    pass
 
 if __name__ == "__main__":
     print(hc.__file__)
