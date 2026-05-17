@@ -55,8 +55,8 @@ import matplotlib
 
 # local modules 
 from shared_funct import manage_cmdline, get_text_message,\
-    connect_2_server,count_difference, enc_str_to_list,\
-    dec_list_to_str, send_with_header, recv_witch_header     
+    connect_2_server,count_difference, hamming_enc_str_to_list,\
+    hamming_dec_list_to_str, send_with_header, recv_witch_header     
 from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE 
 
 #validate input
@@ -80,14 +80,18 @@ text = get_text_message(input_f)
 if TESTING:
     num_rept=2
     #text='ABCD'
-    error_rate=0.01
+    error_rate=0.03
 
-enc_text, avg_te= enc_str_to_list(text)
+#enc_text, avg_te= hamming_enc_str_to_list(text)
 #print(enc_text)
 
 
 for r in range(num_rept):
     for c in ['H','L']:
+        if c=="H":
+            enc_text, avg_te= hamming_enc_str_to_list(text)
+        else:
+            enc_text="dummy LPDC"
         #print(f'info:coding={c}\terror rate={error_rate}\tmesg={enc_text}')
         mesg={'coding':c,'er':error_rate,'enc_text':enc_text}
         if False:
@@ -99,7 +103,12 @@ for r in range(num_rept):
             rmsg=pickle.loads((recv_witch_header(s))) #rmsg=pickle.loads(s.recv(BUFFER_SIZE))
         
         r_enc_text=rmsg['enc_text']
-        rtext, avg_td= dec_list_to_str(r_enc_text)
+
+        if c=="H":
+            rtext, avg_td= hamming_dec_list_to_str(r_enc_text)
+        else:
+            rtext="dummy LPDC"
+        
 
         err=count_difference(text,rtext)
         if text==rtext:
@@ -107,9 +116,10 @@ for r in range(num_rept):
         else:
             check=f'total difference ={err}'
         #print(f'mesg coding:{c}, check:{check}\n')
-        if c=='H':
-            print(c,text)
-            print(c,rtext)
+        #if c=='H':
+        print(f"ini {c} {text}" )
+        print(f"fin {c} {rtext}\n")
+        
 
 if s is not None:
     s.close()

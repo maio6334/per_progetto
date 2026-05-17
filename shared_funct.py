@@ -9,18 +9,18 @@ Used for:
 
 
 Functions:
-    manage_cmdline   : analize and checks command line parameters 
-    _dummy_rnd_gen   : generates dummy values used by _log_test
-    _log_test        : test logger functionality
-    enc_str_to_list  : using hamming lib, code every char from a utf-8 string, returns a list
-    dec_list_to_str  : using hamming lib, decode a list of encodeded char, returns string
-    msg_with_errors  : introduces errors flipping single bit in a list of encoded chars, returns list corrupted and total flipped bits
-    diff_in_mess     : compares string, returns number of differences
-    log              : log events in a csv format to a file  
-    ber_to_snr       : converts a value of Bit erorr rate to a Signal to noise ratio
-    error_in_text    : XXXX
-    count_difference : YYYY
-    recv_witch_header:
+    manage_cmdline          : analize and checks command line parameters 
+    _dummy_rnd_gen          : generates dummy values used by _log_test
+    _log_test               : test logger functionality
+    hamming_enc_str_to_list : using hamming lib, code every char from a utf-8 string, returns a list
+    hamming_dec_list_to_str : using hamming lib, decode a list of encodeded char, returns string
+    msg_with_errors         : introduces errors flipping single bit in a list of encoded chars, returns list corrupted and total flipped bits
+    diff_in_mess            : compares string, returns number of differences
+    log                     : log events in a csv format to a file  
+    ber_to_snr              : converts a value of Bit erorr rate to a Signal to noise ratio
+    error_in_text           : XXXX
+    count_difference        : YYYY
+    recv_witch_header       :
     send_with_header
 Date: 
     AA 2025/2026
@@ -53,9 +53,9 @@ from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE, TIMING_ITERATIONS
 DEF_MSG=    '"A§€𝄞.My mama always said: "Life was like a box of chocolates; you never know what you’re gonna get."'
 ERR_DEF_MSG='"A§€𝄞.My lala always said: "Life was like a box of chocolates; you never know what you’re gonna Met."' # 3 errors
 DEF_LOG= 'log.csv'
-DEF_ERR_RATE= 0.2
-MIN_ERR_RATE= 0.
-MAX_ERR_RATE= 0.8
+DEF_ERR_RATE= 0.04
+MIN_ERR_RATE= 0.0001
+MAX_ERR_RATE= 0.1
 ERR_RATE_NUM_STEP=10
 ERR_RATE_PERC_RANGE=10
 DEF_REPT=100
@@ -289,7 +289,7 @@ def connect_2_server():
         exit(2)      
     return s
 
-def enc_str_to_list(text:str)->list:
+def hamming_enc_str_to_list(text:str)->list:
     """
     Read an input string, encode every char.Calculate encoding average time of execution, Returns a list containing encoded chars and average time
 
@@ -359,7 +359,7 @@ def msg_with_errors(rate :float, message:list) -> (list, int):
     
     return ret_mess, num_err
 
-def dec_list_to_str(message:list)-> str:
+def hamming_dec_list_to_str(message:list)-> str:
     """
     Using Hamming lib, decode a list of encodeded char into a string, substitutes char with "X" if decoding fails
 
@@ -505,30 +505,44 @@ def _error_in_text(t:str, er:float)->str:
     pass
     return ERR_DEF_MSG
 
+def _test_count_difference():
+    while True:
+        i=input("stringa i")
+        f=input("stringa f")
+        if i=="":
+            exit()
+        print("differnze=",count_difference(i,f))
+    
+
 def count_difference(ini:str, fin:str)->int:
+    """
+    Compares two string counting chars not correspondent 
+    if different in lenght extra chars are added to errors
+
+    Parameters
+    ----------
+    ini
+        first string to compare
+        
+    fin
+        second string to compare
+
+    Returns
+    -------
+    errors
+        total chars not corrispondent
+    """
     errors=0
-    for i in range(len(ini)):
+    li=len(ini)
+    lf=len(fin)
+    m=min(li,lf)
+    if li!=lf:
+        errors+=abs(li-lf)
+    for i in range(m):
         if ini[i]!=fin[i]:
             errors+=1
     return errors
 
-def main():
-    pass
-    #test log function
-    '''
-    #messagge formats
-    #every messag is repeated num_rept times
-    #tempo,send,n_mesg,tipo_codifica,durata_cod,err_rate 
-    #tempo,recv,n_mesg,tipo_codifica,durata_dec, err_ril, err_corr
-    )
-    _log_test(n_msg,e_rate, log_f)
-    '''
-    #read_file('./inferno_c1.txt')
-    #f='/home/maurizio/Desktop/progit.pdf'
-    #f='./inferno_c1.txt'
-    read_file(f)
-    
-    #_test_ber_to_snr()
 
 def send_with_header(s:int,payload)->None:
     """
@@ -603,6 +617,26 @@ def recv_witch_header(s)->bytes:
     l=struct.unpack('>I',get_len)[0]
     data=_recv_bytes(s,l)
     return data
+
+def main():
+    pass
+    #test log function
+    '''
+    #messagge formats
+    #every messag is repeated num_rept times
+    #tempo,send,n_mesg,tipo_codifica,durata_cod,err_rate 
+    #tempo,recv,n_mesg,tipo_codifica,durata_dec, err_ril, err_corr
+    )
+    _log_test(n_msg,e_rate, log_f)
+    '''
+    #read_file('./inferno_c1.txt')
+    #f='/home/maurizio/Desktop/progit.pdf'
+    #f='./inferno_c1.txt'
+    #read_file(f)
+    _test_count_difference()
+    #_test_ber_to_snr()
+
+
 
 if __name__ == "__main__":
     print(hc.__file__)

@@ -2,7 +2,7 @@
 
 import hamming_codec  as hc
 from commonhelp  import change_1_bit, str_2_int, int_2_str
-from shared_funct import enc_str_to_list, msg_with_errors, dec_list_to_str,\
+from shared_funct import hamming_enc_str_to_list, msg_with_errors, dec_list_to_str,\
                         diff_in_mess, log, read_file
 
 import numpy as np
@@ -62,18 +62,18 @@ def _test_code_decode():
     """
     text=read_file('inferno_c1.txt')
     print(len(text))
-    text=text[:380]
+    text=text[:1500]
     #text="A§€𝄞"
     #text='la pazza gioia di essere sani'
 #     text='''Probabilmente uscì chiudendo dietro a se la porta verde
 # Qualcuno si era alzato a preparargli in fretta un caffè d'orzo
 # Non so se si girò, non era il tipo d'uomo che si perde'''
     #encode
-    enc, avg_te= enc_str_to_list(text)
+    enc, avg_te= hamming_enc_str_to_list(text)
     
     #print(enc)
     # inserting errors
-    rate=0.6
+    rate=0.079
     ret_mess, flipped=msg_with_errors(rate, enc)
     #decode
     r_text, avg_td= dec_list_to_str(ret_mess)
