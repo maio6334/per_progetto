@@ -61,7 +61,7 @@ for l in range(len(tbits)//8):
     for i in range(8):
         d=d |(c[i]<<i)
     a.append(d)
-text_decoded=bytearray(a).decode() 
+text_decoded=bytearray(a).decode("utf-8",errors='replace')
 
 #detecting errors
 errors=0

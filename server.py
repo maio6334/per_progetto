@@ -54,7 +54,7 @@ import signal # to handle manual shutdown
 from costants import TESTING,TCP_IP,TCP_PORT ,BUFFER_SIZE 
 from shared_funct import GetDetailedInfo, msg_with_errors,\
     send_with_header, recv_witch_header ,\
-        ConnectionClosed, ConnectionLost
+        ConnectionClosed, ConnectionLost,get_hash, is_valid_data
 
 #from commonhelp import verify_command, txt_file_2_dic
 
@@ -119,6 +119,13 @@ while not stop:
                 msg=pickle.loads(d)
                 count+=1
                 
+                #check corrupted payload
+                r_hash=msg['hash']
+                r_enc=msg['enc']
+                if not(is_valid_data(r_enc,r_hash)):
+                    print("payload is corrupted")
+                    continue
+
                 if msg['coding']=='H':
                     #  insert error routine
                     print(f'{count} - received  {msg}')
@@ -126,6 +133,7 @@ while not stop:
                     enc=msg['enc']
                     ret_mess, flipped=msg_with_errors(rate, enc)
                     msg['enc']=ret_mess
+                    msg['hash']=get_hash(ret_mesg)
                     print(f'{count} - send back {msg}')   
                 
                 payload=pickle.dumps(msg)

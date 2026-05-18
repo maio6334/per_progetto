@@ -18,8 +18,10 @@ Functions:
     ber_to_snr              : converts a value of Bit erorr rate to a Signal to noise ratio
     error_in_text           : XXXX
     count_difference        : YYYY
-    recv_witch_header       :
-    send_with_header
+    recv_witch_header       : xxx
+    send_with_header        : xxxx
+    get_hash                : calculate data's hash digest 
+    is_valid_data           : validate data against his hash digest
 Date: 
     AA 2025/2026
 
@@ -268,7 +270,7 @@ def ldpc_dec_list_to_str(r_enc:np.ndarray,H:np.ndarray,G:np.ndarray,snr:float)->
         for i in range(8):
             byte=byte |(array_bit[i]<<i)
         bytelist.append(byte)
-    rtext=bytearray(bytelist).decode() 
+    rtext=bytearray(bytelist).decode("utf-8",errors='replace') 
     dur_avg=dur/(TIMING_ITERATIONS * len(rtext))
     #rtext="dummy LPDC"
     return rtext, dur_avg
@@ -502,7 +504,8 @@ def count_difference(ini:str, fin:str)->int:
 
 def send_with_header(s:int,payload)->None:
     """
-    Send a payload to a socket, needed when payload's length > BUFFER_SIZE to 
+    Send a payload to a socket, needed add payload's lenght to mange when payload's length > BUFFER_SIZE 
+    
 
     Parameters
     ----------
@@ -573,6 +576,16 @@ def recv_witch_header(s)->bytes:
     l=struct.unpack('>I',get_len)[0]
     data=_recv_bytes(s,l)
     return data
+
+def is_valid_data(data:any, digest:bytearray)-> bool:
+    ch=get_hash(data)
+    return  digest==c_hash
+
+def get_hash(data:any)-> bytearray:
+    m=hashlib.sha256()
+    mv_enc=memoryview(data)
+    m.update(mv_enc)
+    return  m.hexdigest()
 
 def main():
     #read_file('./inferno_c1.txt')
