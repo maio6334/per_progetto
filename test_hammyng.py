@@ -2,8 +2,8 @@
 
 import hamming_codec  as hc
 from commonhelp  import change_1_bit, str_2_int, int_2_str
-from shared_funct import hamming_enc_str_to_list, msg_with_errors, dec_list_to_str,\
-                        diff_in_mess, log, read_file
+from shared_funct import hamming_enc_str_to_list, msg_with_errors, hamming_dec_list_to_str,\
+                         log, read_file
 
 import numpy as np
 
@@ -36,6 +36,34 @@ def _max_len_supported():
         except Exception as e:
             print(f'decode failed at {(i+1)//8} bytes')
             #exit()
+
+
+def diff_in_mess(initial:str, final:str)-> int:
+    """
+    Compares two string returning the difference
+
+    Compares two string by position, counts how many corrispondent chars differs
+
+    Parameters
+    ----------
+    initial
+        string 1 to compare
+    finale
+        string 2 to compare
+
+    Returns
+    -------
+    diff
+        number of different chars between two strings
+    """
+      
+    #incredibile
+    # sum(1 for a,b in zip(initial, final) if a!=b)
+    diff=0
+    for i in range(len(initial)):
+        if final[i]!=initial[i]:
+            diff+=1
+    return diff
 
 
 def _test_code_decode():
@@ -73,10 +101,10 @@ def _test_code_decode():
     
     #print(enc)
     # inserting errors
-    rate=0.079
+    rate=0.009
     ret_mess, flipped=msg_with_errors(rate, enc)
     #decode
-    r_text, avg_td= dec_list_to_str(ret_mess)
+    r_text, avg_td= hamming_dec_list_to_str(ret_mess)
 
     #print(r_text)
     diff=diff_in_mess(text,r_text)

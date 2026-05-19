@@ -13,15 +13,14 @@ Functions:
     hamming_enc_str_to_list : using hamming lib, code every char from a utf-8 string, returns a list
     hamming_dec_list_to_str : using hamming lib, decode a list of encodeded char, returns string
     msg_with_errors         : introduces errors flipping single bit in a list of encoded chars, returns list corrupted and total flipped bits
-    diff_in_mess            : compares string, returns number of differences
     log                     : log events in a csv format to a file  
     ber_to_snr              : converts a value of Bit erorr rate to a Signal to noise ratio
-    error_in_text           : XXXX
-    count_difference        : YYYY
+    count_differences       : counts difference in string
     recv_witch_header       : xxx
     send_with_header        : xxxx
     get_hash                : calculate data's hash digest 
     is_valid_data           : validate data against his hash digest
+
 Date: 
     AA 2025/2026
 
@@ -157,8 +156,6 @@ def manage_cmdline(descr:str)-> (int,int,float,str,str): #bool):
 
     return (file_input, log_file,num_repetition, err_rate) 
 
-
-
 def get_text_message(input_f:str | None)-> str:
     """
     Returns a string reading all text from input_f , if input_f is None return an internal string (DEF_MSG)
@@ -180,7 +177,6 @@ def get_text_message(input_f:str | None)-> str:
     else: 
         l=read_file(input_f)
     return l
-
 
 def connect_2_server():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -230,7 +226,6 @@ def ldpc_enc_str_to_array(text:str,G:np.ndarray,snr:float,seed:int)->(np.ndarray
     
     return encoded, dur_avg
 
-
 def ldpc_dec_list_to_str(r_enc:np.ndarray,H:np.ndarray,G:np.ndarray,snr:float)-> (str,float):
     """
     Using pyldpc lib, decode a list of encodeded char into a string
@@ -274,7 +269,6 @@ def ldpc_dec_list_to_str(r_enc:np.ndarray,H:np.ndarray,G:np.ndarray,snr:float)->
     dur_avg=dur/(TIMING_ITERATIONS * len(rtext))
     #rtext="dummy LPDC"
     return rtext, dur_avg
-
 
 def hamming_enc_str_to_list(text:str)->list:
     """
@@ -381,32 +375,6 @@ def hamming_dec_list_to_str(message:list)-> str:
     #print(f'"DEC","HAM",{dur_avg}')
     return r, dur_avg
 
-def diff_in_mess(initial:str, final:str)-> int:
-    """
-    Compares two string returning the difference
-
-    Compares two string by position, counts how many corrispondent chars differs
-
-    Parameters
-    ----------
-    initial
-        string 1 to compare
-    finale
-        string 2 to compare
-
-    Returns
-    -------
-    diff
-        number of different chars between two strings
-    """
-      
-    #incredibile
-    # sum(1 for a,b in zip(initial, final) if a!=b)
-    diff=0
-    for i in range(len(initial)):
-        if final[i]!=initial[i]:
-            diff+=1
-    return diff
 
 def log(event:dict,log_f:str)-> None:
     """
@@ -473,7 +441,7 @@ def ber_to_snr(error_rate:float)-> float:
     snr=10*math.log10((1/error_rate)-1)
     return snr   
 
-def count_difference(ini:str, fin:str)->int:
+def count_differences(ini:str, fin:str)->int:
     """
     Compares two string counting chars not correspondent 
     if different in lenght extra chars are added to errors
@@ -560,7 +528,7 @@ def _recv_bytes(s:int, l:int)->bytes:
 
 def recv_witch_header(s)->bytes:
     """
-    Receive a message from a socket, first gets message lenght in bytes from message header then gets data
+    Receive a message from a socket, gets message lenght from message header then collect chunks of data
     
     Parameters
     ----------
@@ -572,16 +540,45 @@ def recv_witch_header(s)->bytes:
     data
         payload (a dictionary)
     """   
-    get_len=_recv_bytes(s,4)
+    get_len=_recv_bytes(s,4) # to do substitute 4 with a tyoe lenght of int
     l=struct.unpack('>I',get_len)[0]
     data=_recv_bytes(s,l)
     return data
 
 def is_valid_data(data:any, digest:bytearray)-> bool:
-    ch=get_hash(data)
-    return  digest==c_hash
+    """
+    Validate data against his hash digest
+    
+    Parameters
+    ----------
+    data
+        a list or an array
+    
+    digest
+        sha256 digest to compare
 
-def get_hash(data:any)-> bytearray:
+    Returns
+    -------
+    _
+        True if input digest matches calculated's one
+        
+    """   
+    return  digest==get_hash(data) # better a lambda ? lambda( data, digest: digest==get_hash(data))
+
+def get_hash(data:list|np.ndarray)-> bytearray:
+    """
+    Calculate data's hash digest 
+    
+    Parameters
+    ----------
+    data
+        a list or an array
+
+    Returns
+    -------
+    data
+        sha256 digest of data
+    """   
     m=hashlib.sha256()
     mv_enc=memoryview(data)
     m.update(mv_enc)
