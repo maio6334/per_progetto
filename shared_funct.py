@@ -16,8 +16,8 @@ Functions:
     log                     : log events in a csv format to a file  
     ber_to_snr              : converts a value of Bit erorr rate to a Signal to noise ratio
     count_differences       : counts difference in string
-    recv_witch_header       : xxx
-    send_with_header        : xxxx
+    recv_witch_header       : receive a message from a socket collecting chunks of data if lmessage lenght > BUFFER_SIZE
+    send_with_header        : send a payload to a socket prepending his lenght
     get_hash                : calculate data's hash digest 
     is_valid_data           : validate data against his hash digest
 
@@ -47,7 +47,7 @@ import pickle
 from pyldpc import make_ldpc, decode, get_message, encode
 
 # local modules
-from costants import TCP_IP,TCP_PORT ,BUFFER_SIZE, TIMING_ITERATIONS
+from costants import TCP_IP,TCP_PORT ,BUFFER_SIZE, TIMING_ITERATIONS,PACKING_FORMAT
                     
 # local constants
 DEF_MSG=    '"A§€𝄞.My mama always said: "Life was like a box of chocolates; you never know what you’re gonna get."'
@@ -220,8 +220,11 @@ def ldpc_enc_str_to_array(text:str,G:np.ndarray,snr:float,seed:int)->(np.ndarray
     bits=np.array([ e>>i & 1 for e in text.encode() for i in range(8)])
     # split every byte into columns
     bits_matrix=bits.reshape((-1,k)).T
-    encoded = encode(G, bits_matrix, snr, seed=seed)
-    dur= timeit(lambda: encode(G, bits_matrix, snr, seed=seed), number=TIMING_ITERATIONS)
+    try:
+        encoded = encode(G, bits_matrix, snr, seed=seed)
+        dur= timeit(lambda: encode(G, bits_matrix, snr, seed=seed), number=TIMING_ITERATIONS)
+    except Exception :
+        dur=float("nan")
     dur_avg=dur/(TIMING_ITERATIONS * len(text))
     
     return encoded, dur_avg
@@ -248,8 +251,16 @@ def ldpc_dec_list_to_str(r_enc:np.ndarray,H:np.ndarray,G:np.ndarray,snr:float)->
         average duration decoding
     """
     #decode
-    D = decode(H, r_enc, snr)
-    dur= timeit(lambda: decode(H, r_enc, snr), number=TIMING_ITERATIONS)
+    try:
+        D = decode(H, r_enc, snr)
+    except Exception as e:
+        print('Error LDPC decode function')
+        pass
+
+    try:
+        dur= timeit(lambda: decode(H, r_enc, snr), number=TIMING_ITERATIONS)
+    except Exception :
+        dur=float("nan")    
     #extract message
     # flatting matrix 
     x=[]
@@ -291,8 +302,11 @@ def hamming_enc_str_to_list(text:str)->list:
     for i in range(len(text)):
         l=len(text[i].encode())*8
         c_ord=ord(text[i])
-        c=hc.encode(c_ord,l)
-        dur+= timeit(lambda: hc.encode(c_ord,l), number=TIMING_ITERATIONS)
+        try:
+            c=hc.encode(c_ord,l)
+            dur+= timeit(lambda: hc.encode(c_ord,l), number=TIMING_ITERATIONS)
+        except Exception :
+            dur=float("nan")
         enc.append(c)
     dur_avg=dur/(TIMING_ITERATIONS * len(text))
 
@@ -363,13 +377,22 @@ def hamming_dec_list_to_str(message:list)-> str:
     for i in range(len(message)):
         imsg=int(message[i],2)
         l=len(message[i])
-        d = hc.decode(imsg, l)
-        dur+= timeit(lambda: hc.decode(imsg, l), number=TIMING_ITERATIONS)
+
+        try:
+            d = hc.decode(imsg, l)
+        except Exception:
+            d='0b1111111111111101' #  �
+
+        try:
+            dur+= timeit(lambda: hc.decode(imsg, l), number=TIMING_ITERATIONS)
+        except Exception :
+            dur=float("nan")
+
         try:
             r.append(chr(int(d,2)))
         except (ValueError,OverflowError): # overflow detected when int is not a unicode value
-            print(f'error decoding character in position {i} , inserting X instead', file=sys.stderr)
-            r.append('X')
+            print(f'error decoding character in position {i} , inserting  "�" instead', file=sys.stderr)
+            r.append(chr(0xFFFD)) #  �
     r=''.join(r)
     dur_avg=dur/(TIMING_ITERATIONS * len(message))
     #print(f'"DEC","HAM",{dur_avg}')
@@ -470,9 +493,9 @@ def count_differences(ini:str, fin:str)->int:
             errors+=1
     return errors
 
-def send_with_header(s:int,payload)->None:
+def send_with_header(s:int,payload:bytes)->None:
     """
-    Send a payload to a socket, needed add payload's lenght to mange when payload's length > BUFFER_SIZE 
+    Send a payload to a socket, prepending his lenght 
     
 
     Parameters
@@ -481,13 +504,13 @@ def send_with_header(s:int,payload)->None:
         socket
 
     payload
-        data to trasmit
+        data to send
 
     Returns
     -------
     None
     """   
-    header=struct.pack('>I', len(payload)) # unsigned int 4 bytes
+    header=struct.pack(PACKING_FORMAT, len(payload)) # unsigned int 4 bytes BE
     s.sendall(header+ payload)     
 
 class ConnectionClosed(ConnectionError):
@@ -498,7 +521,7 @@ class ConnectionLost(ConnectionError):
     "service class to export exception to server"
     pass
 
-def _recv_bytes(s:int, l:int)->bytes:
+def _recv_bytes(s:int, l:int)->bytearray:
     """
     Reads l bytes from socket
     
@@ -525,10 +548,9 @@ def _recv_bytes(s:int, l:int)->bytes:
                 raise ConnectionError('Connection lost')
     return buffer
     
-
-def recv_witch_header(s)->bytes:
+def recv_witch_header(s)->bytearray:
     """
-    Receive a message from a socket, gets message lenght from message header then collect chunks of data
+    receive a message from a socket collecting chunks of data if lmessage lenght > BUFFER_SIZE
     
     Parameters
     ----------
@@ -538,10 +560,10 @@ def recv_witch_header(s)->bytes:
     Returns
     -------
     data
-        payload (a dictionary)
+        payload (a dictionary as bytearray)
     """   
-    get_len=_recv_bytes(s,4) # to do substitute 4 with a tyoe lenght of int
-    l=struct.unpack('>I',get_len)[0]
+    get_len=_recv_bytes(s,BYTES_IN_INTEGER) # to do substitute 4 with a tyoe lenght of int
+    l=struct.unpack(PACKING_FORMAT,get_len)[0]
     data=_recv_bytes(s,l)
     return data
 

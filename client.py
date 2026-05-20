@@ -98,7 +98,6 @@ for r in range(num_rept):
         
         if c=="H":
             encoded, avg_te= hamming_enc_str_to_list(text)
-
         else:
             encoded, avg_te= ldpc_enc_str_to_array(text,G,snr,seed)
         
