@@ -20,6 +20,7 @@ Functions:
     send_with_header        : send a payload to a socket prepending his lenght
     get_hash                : calculate data's hash digest 
     is_valid_data           : validate data against his hash digest
+    sweep_range             : returns a list of 'steps' values around a given mean value 
 
 Date: 
     AA 2025/2026
@@ -43,22 +44,51 @@ import hamming_codec  as hc
 from timeit import timeit
 import math
 import struct
-import pickle
+#import pickle
 from pyldpc import make_ldpc, decode, get_message, encode
+import hashlib
 
 # local modules
-from costants import TCP_IP,TCP_PORT ,BUFFER_SIZE, TIMING_ITERATIONS,PACKING_FORMAT
+from costants import TCP_IP,TCP_PORT ,BUFFER_SIZE, TIMING_ITERATIONS,PACKING_FORMAT, BYTES_IN_INTEGER
                     
 # local constants
 DEF_MSG=    '"A§€𝄞.My mama always said: "Life was like a box of chocolates; you never know what you’re gonna get."'
 DEF_LOG= 'log.csv'
 DEF_ERR_RATE= 0.04
-MIN_ERR_RATE= 0.0001
+MIN_ERR_RATE= 0.001
 MAX_ERR_RATE= 0.1
-ERR_RATE_NUM_STEP=10
-ERR_RATE_PERC_RANGE=10
-DEF_REPT=2
-MAX_REPT=1_000
+
+#DEF_STEP= DEF_ERR_RATE/20
+DEF_STEPS= 20
+MAX_STEPS= 500
+# ERR_RATE_NUM_STEP=10
+# ERR_RATE_PERC_RANGE=10
+# DEF_REPT=2
+# MAX_REPT=1_000
+
+
+def sweep_range(mid:float,steps:int)->list:
+    """
+    Returns a list of 'steps' values around a given mean value 
+
+    Parameters
+    ----------
+    mid
+        center of range
+    steps
+        number of steps
+
+    Returns
+    -------
+    seq
+        list of float
+    """
+    delta = (mid/(steps/2))
+    start = mid-delta
+    stop  = mid+ delta
+    seq = np.linspace(start,stop,steps) 
+    return seq 
+
 
 
 class GetDetailedInfo(argparse.Action):
@@ -74,7 +104,7 @@ class GetDetailedInfo(argparse.Action):
         print(sys.modules['__main__'].__doc__)
         parser.exit()
 
-def manage_cmdline(descr:str)-> (int,int,float,str,str): #bool):
+def manage_cmdline(descr:str)-> (str,str,float,int): #bool):
     """
     Parse command line argument checking type for numeric inputs
     Add help funcionality to command line
@@ -94,21 +124,21 @@ def manage_cmdline(descr:str)-> (int,int,float,str,str): #bool):
     log_file
         file to log events
     err_rate
-        % of errors in message (BER)
-    num_repetition
+        mean % of errors in message (BER)
+    steps
         number of cycles  code /decode to be measured
 
     """
     #internal
     #    True if input file is missing use internal string
 
-
     parser = argparse.ArgumentParser(description=descr, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("-i","--input", default=None, help="Path to the input text file (if missing program uses a built-in string)")
-    parser.add_argument("-l","--log", default=DEF_LOG, help="Path to the output log file (default: ./client.log)")
+    parser.add_argument("-i","--input", default=None, help="Path to the input text file, if input is missing will be code/decode a built-in string")
+    parser.add_argument("-l","--log", default=DEF_LOG, help=f"Path to the output log file (default: ./{DEF_LOG})")
     parser.add_argument("-e","--error-rate", type=float,default=DEF_ERR_RATE,help=f"Error rate, float between {MIN_ERR_RATE} and {MAX_ERR_RATE} if missing default: {DEF_ERR_RATE})")
-    parser.add_argument("-r","--repeat", type=int,default=DEF_REPT,help=f"number of repetition for code-decode cycle (default: {DEF_REPT}, max:{MAX_REPT} )") 
-    parser.add_argument("--verbose", nargs=0,action=GetDetailedInfo, help="Prints the main-module's docstring")
+    #parser.add_argument("-r","--repeat", type=int,default=DEF_REPT,help=f"number of repetition for code-decode cycle (default: {DEF_REPT}, max:{MAX_REPT} )") 
+    parser.add_argument("-s","--steps", type=int,default=DEF_STEPS,help=f"number of code-decode cycles using equally spaced values around the selected error rate(default: {DEF_STEPS})") 
+    parser.add_argument("-v","--verbose", nargs=0,action=GetDetailedInfo, help="Prints the main-module's docstring")
     
     args = parser.parse_args()
 
@@ -151,10 +181,11 @@ def manage_cmdline(descr:str)-> (int,int,float,str,str): #bool):
         return ret
 
 
-    num_repetition=range_validate('--repeat',args.repeat,DEF_REPT,MAX_REPT)
+    #num_repetition=range_validate('--repeat',args.repeat,DEF_REPT,MAX_REPT)
     err_rate =range_validate('--error-rate',args.error_rate,MIN_ERR_RATE,MAX_ERR_RATE)  # !! Parser translate - with _
+    steps=range_validate('--steps',args.steps,0,MAX_STEPS) 
 
-    return (file_input, log_file,num_repetition, err_rate) 
+    return (file_input, log_file, err_rate,steps) 
 
 def get_text_message(input_f:str | None)-> str:
     """
@@ -587,7 +618,7 @@ def is_valid_data(data:any, digest:bytearray)-> bool:
     """   
     return  digest==get_hash(data) # better a lambda ? lambda( data, digest: digest==get_hash(data))
 
-def get_hash(data:list|np.ndarray)-> bytearray:
+def get_hash(data:list|np.ndarray)-> str:
     """
     Calculate data's hash digest 
     
@@ -601,8 +632,9 @@ def get_hash(data:list|np.ndarray)-> bytearray:
     data
         sha256 digest of data
     """   
+  
     m=hashlib.sha256()
-    mv_enc=memoryview(data)
+    mv_enc= memoryview(np.char.array(data))  if isinstance(data,list) else memoryview(data) 
     m.update(mv_enc)
     return  m.hexdigest()
 
