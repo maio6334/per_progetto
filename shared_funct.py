@@ -44,27 +44,24 @@ import hamming_codec  as hc
 from timeit import timeit
 import math
 import struct
-#import pickle
 from pyldpc import make_ldpc, decode, get_message, encode
 import hashlib
+import pandas as pd
+import matplotlib.pyplot as plt
 
 # local modules
-from costants import TCP_IP,TCP_PORT ,BUFFER_SIZE, TIMING_ITERATIONS,PACKING_FORMAT, BYTES_IN_INTEGER
+from costants import TCP_IP,TCP_PORT ,BUFFER_SIZE, TIMING_ITERATIONS,\
+                     PACKING_FORMAT, BYTES_IN_INTEGER, TESTING
                     
 # local constants
 DEF_MSG=    '"A§€𝄞.My mama always said: "Life was like a box of chocolates; you never know what you’re gonna get."'
 DEF_LOG= 'log.csv'
-DEF_ERR_RATE= 0.04
+DEF_ERR_RATE= 0.02
 MIN_ERR_RATE= 0.001
 MAX_ERR_RATE= 0.1
 
-#DEF_STEP= DEF_ERR_RATE/20
-DEF_STEPS= 20
+DEF_STEPS= 30
 MAX_STEPS= 500
-# ERR_RATE_NUM_STEP=10
-# ERR_RATE_PERC_RANGE=10
-# DEF_REPT=2
-# MAX_REPT=1_000
 
 
 def sweep_range(mid:float,steps:int)->list:
@@ -446,7 +443,8 @@ def log(event:dict,log_f:str)-> None:
     None
 
     """
-    FORMAT='%(asctime)s,%(message)s,%(rate)s,%(diff)s,%(avg_te)s,%(avg_td)s'
+    # old FORMAT='%(asctime)s;%(message)s;%(rate)s;%(diff)s;%(avg_te)s;%(avg_td)s'
+    FORMAT='%(asctime)s;%(message)s;%(rate)s;%(action)s;%(diff)s;%(avg_t)s'
     logger = logging.getLogger(__name__) # maybe None but it's a reccommended practice maybe to distinguish logs from differente modules
     logging.basicConfig(filename=log_f, filemode='a',encoding='utf-8', \
     format=FORMAT,level=logging.INFO) # datefmt='%m/%d/%Y %I:%M:%S %p',
@@ -638,11 +636,60 @@ def get_hash(data:list|np.ndarray)-> str:
     m.update(mv_enc)
     return  m.hexdigest()
 
+def visually_compare2(logfile:str,columns:list):
+    if TESTING:
+        event={'coding':'H','rate':0.0, 'diff':0, 'avg_te':0.0, 'avg_td':0.0}
+    columns=list(event)
+    columns.insert(0,'datetime')
+    df=pd.read_csv(logfile, names=columns, index_col=2, delimiter=';')
+    df=df.groupby(['rate','coding']).mean()
+    df.reset_index()
+    
+    
+    l=[]
+    for cod in coding:
+        for dim in columns[4:]:
+            filt=df[df['coding']==cod][dim].groupby(level=0).mean()
+            ser_name=cod + '-' + dim
+            filt.name=ser_name
+            l.append(filt)
+
+    df2=pd.concat(l,axis=1)
+    df2.plot()
+    plt.show()
+    pass
+
+
+
+def visually_compare(logfile:str,columns:list):
+    if TESTING:
+        event={'coding':'H','rate':0.0, 'diff':0, 'avg_te':0.0, 'avg_td':0.0}
+    columns=list(event)
+    columns.insert(0,'datetime')
+    df=pd.read_csv(logfile, names=columns, index_col=2, delimiter=';')
+    coding=pd.unique(df.coding)
+    l=[]
+    for cod in coding:
+        for dim in columns[4:]:
+            filt=df[df['coding']==cod][dim].groupby(level=0).mean()
+            ser_name=cod + '-' + dim
+            filt.name=ser_name
+            l.append(filt)
+
+    df2=pd.concat(l,axis=1)
+    df2.plot()
+    plt.show()
+    pass
+
+
+
 def main():
     #read_file('./inferno_c1.txt')
     #f='/home/maurizio/Desktop/progit.pdf'
     #f='./inferno_c1.txt'
     #read_file(f)
+    visually_compare2('log.csv',[])
+
     pass
 
 if __name__ == "__main__":

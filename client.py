@@ -53,7 +53,6 @@ Version:
 # standard modules
 #import socket
 import pickle
-import matplotlib
 import numpy as np
 from pyldpc import make_ldpc, decode, get_message, encode
 
@@ -63,7 +62,9 @@ from shared_funct import manage_cmdline, get_text_message,\
     connect_2_server,count_differences, hamming_enc_str_to_list,\
     hamming_dec_list_to_str, send_with_header, recv_witch_header, \
     log, ber_to_snr,ldpc_enc_str_to_array, ldpc_dec_list_to_str, \
-    get_hash, is_valid_data, sweep_range       
+    get_hash, is_valid_data, sweep_range, visually_compare
+
+
 
 from costants import LDPC_N, LDPC_D_V, LDPC_D_C # TESTING
 
@@ -110,6 +111,8 @@ for r in range(steps):
         else:
             encoded, avg_te= ldpc_enc_str_to_array(text,G,snr,seed)
         
+        event={'coding':c,'rate':error_rate, 'action':'ENC','diff':0,  'avg_t':avg_te}
+        log(event,log_f )        
         hash=get_hash(encoded)
         mesg={'coding':c,'er':error_rate,'enc':encoded,'hash':hash}
 
@@ -129,12 +132,14 @@ for r in range(steps):
             rtext, avg_td=ldpc_dec_list_to_str(r_enc,H,G,snr)
         
         err=count_differences(text,rtext)
-        log({'coding':c,'rate':error_rate,'diff':err, 'avg_te':avg_te, 'avg_td':avg_td},log_f )
+        # old event={'coding':c,'rate':error_rate,'diff':err, 'avg_te':avg_te, 'avg_td':avg_td}
+        event={'coding':c,'rate':error_rate, 'action':'DEC','diff':err,  'avg_t':avg_td}
+        log(event,log_f )
   
         print(f"ini {c} {text}" )
         print(f"fin {c} {rtext}\n")
         
-
 if s is not None:
     s.close()
-exit()
+
+visually_compare(log_f,event.keys())
