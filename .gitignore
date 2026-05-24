@@ -6,7 +6,7 @@ hamming-codec/
 old/
 pyldpc
 grafico/
-
+xbranch/
 #single files
 
 
@@ -25,3 +25,6 @@ strbyte.py
 pypldp-shapingG.py
 functions_obsolete.py
 valgrind_report.txt
+valgrind_report1.txt
+errors.log 
+
