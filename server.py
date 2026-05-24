@@ -3,18 +3,15 @@
 """
 Server side module of a two-component application for evaluating Hamming and LDPC error correction algorithms.
 
-It receives from client a messagge consisting in XXX fields:
- - id message (int)
- - an (float) error rate value
- - a coded string 
- - a checksum (byte)
- it modified the string 
- then it send back a message consisting in YY fields:
- - id message (int)
- - a coded string 
- - a checksum (byte)
+It receives from client a messagge consisting a dictionary containing :
+ - coding : representd the type of coding 
+ - er     : bit error rate
+ - enc    : a coded string 
+ - hash   : hash value calculated for enc
 
-
+ if coding=H enc is modified changing n bits to comply with er  
+ then it send back 
+ 
 
 Usage:
     python server.py 
@@ -28,7 +25,6 @@ Examples:
 
 Dependencies:
     - python       >= 3.12.3
-    - random
     - shared_funct
     - constants
 
@@ -68,7 +64,7 @@ def server_activate():
         
     except Exception as e:
         print(f'\nGeneric error starting server.\n\nClosing {__file__}\n')
-        exit(0)
+        exit(1)
     return serv
 
 def stop_loop():
@@ -108,34 +104,33 @@ while not stop:
     except Exception as e:
         print('\nGeneric socket error.\n')
         break
-
+ 
     with conn:
         while not stop:    
             try:
-                d=recv_witch_header(conn) #d = conn.recv(BUFFER_SIZE)
-                # if not d:
-                #     print(f'\nconnection closed from {addr}\n')
-                #     break 
+                d=recv_witch_header(conn) 
                 msg=pickle.loads(d)
                 count+=1
                 
                 #check corrupted payload
                 r_hash=msg['hash']
                 r_enc=msg['enc']
-                if not(is_valid_data(r_enc,r_hash)):
-                    print("payload is corrupted")
-                    continue
+                check=is_valid_data(r_enc,r_hash)
+                #check=False
+                if not(check):
+                    print("payload is corrupted, request resending ")
+                    msg['coding']='W' #signal wrong message requiring resend
+                else:
+                    if msg['coding']=='H':
+                        #  insert error routine
+                        print(f'{count} - received  {msg}')
+                        rate=msg['er']
+                        enc=msg['enc']
+                        ret_mesg, flipped=msg_with_errors(rate, enc)
+                        msg['enc']=ret_mesg
+                        msg['hash']=get_hash(ret_mesg)
+                        print(f'{count} - send back {msg}')   
 
-                if msg['coding']=='H':
-                    #  insert error routine
-                    print(f'{count} - received  {msg}')
-                    rate=msg['er']
-                    enc=msg['enc']
-                    ret_mesg, flipped=msg_with_errors(rate, enc)
-                    msg['enc']=ret_mesg
-                    msg['hash']=get_hash(ret_mesg)
-                    print(f'{count} - send back {msg}')   
-                
                 payload=pickle.dumps(msg)
                 l=len(payload)
                 send_with_header(conn,payload)    #conn.sendall(pickle.dumps(msg))
@@ -143,7 +138,7 @@ while not stop:
                 break
             except Exception as e:
                     print(f'Error: {e}\nClosing program{__file__}')
-                    exit() 
+                    exit(1) 
 
 serv.close() # close the socket
 print(f'Server is gracefully closed.\nManaged {conn_count} connections')

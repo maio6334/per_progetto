@@ -1,6 +1,8 @@
 # to mantain shared constants
 
-TESTING=True
+TESTING=False
+
+MAX_COMM_ERR=3 # max communication fault in a row 
 
 # socket constants
 TCP_IP = '127.0.0.1' #  'lab00'

@@ -66,7 +66,7 @@ from shared_funct import manage_cmdline, get_text_message,\
 
 
 
-from costants import LDPC_N, LDPC_D_V, LDPC_D_C # TESTING
+from costants import LDPC_N, LDPC_D_V, LDPC_D_C ,MAX_COMM_ERR , TESTING
 
 
 #validate input
@@ -97,12 +97,12 @@ s=connect_2_server()
 text = get_text_message(input_f)
 
 event={} # to log duration 
-
+comm_err=0
 
 for r in range(steps):
     error_rate=error_list[r]
     snr=ber_to_snr(error_rate) 
-    for c in ['L','H']:
+    for c in ['H','L']:
         avg_te=0
         avg_td=0
     
@@ -118,13 +118,25 @@ for r in range(steps):
 
         payload = pickle.dumps(mesg)
         l=len(payload)
-        send_with_header(s,payload)  # needed ad payload > BUFFER_SIZE # old s.sendall(payload) 
-        rmsg=pickle.loads((recv_witch_header(s))) #rmsg=pickle.loads(s.recv(BUFFER_SIZE))      
-        r_hash=rmsg['hash']
-        r_enc=rmsg['enc']
-        if not(is_valid_data(r_enc,r_hash)):
-            print("payload is corrupted")
-            continue
+        good_comm=False
+        while not good_comm:
+            send_with_header(s,payload)  # needed ad payload > BUFFER_SIZE # old s.sendall(payload) 
+            rmsg=pickle.loads((recv_witch_header(s))) #rmsg=pickle.loads(s.recv(BUFFER_SIZE))      
+            r_hash=rmsg['hash']
+            r_enc=rmsg['enc']
+            if TESTING:
+                rmsg['coding']='W'
+            if rmsg['coding']=='W' or not(is_valid_data(r_enc,r_hash)):
+                comm_err+=1
+                if comm_err> MAX_COMM_ERR:
+                    print('too much communication error.closing client')
+                    exit(1)
+                else:
+                    print(f"payload is corrupted, resending n={comm_err}")
+                
+            else:
+                good_comm=True
+                comm_err=0
 
         if c=="H":
             rtext, avg_td= hamming_dec_list_to_str(r_enc)
@@ -142,4 +154,5 @@ for r in range(steps):
 if s is not None:
     s.close()
 
-visually_compare(log_f,event.keys())
+#visually_compare(log_f,event.keys())
+print('program ends')

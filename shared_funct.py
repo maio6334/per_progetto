@@ -150,10 +150,10 @@ def manage_cmdline(descr:str)-> (str,str,float,int): #bool):
                 t=f.read(1) # check only first char - that is one or more bytes
             except UnicodeDecodeError:
                 print(f"Error: Input file \"{file_input}\" di tipo binario")
-                sys.exit()
+                sys.exit(2)
         except FileNotFoundError:
             print(f"Error: Input file \"{file_input}\" does\'nt exists.")
-            sys.exit()     
+            sys.exit(3)     
     else:
         file_input=None
 
@@ -162,7 +162,7 @@ def manage_cmdline(descr:str)-> (str,str,float,int): #bool):
         f=open(log_file,'a',  encoding="utf-8") 
     except FileNotFoundError:
         print(f"Input file \"{file_input}\" does\'nt exists.")
-        sys.exit()
+        sys.exit(3)
 
     def range_validate(name:str, val:any, min:any, max:any)-> any:
         mod=True
@@ -213,10 +213,10 @@ def connect_2_server():
         s.connect((TCP_IP, TCP_PORT))
     except ConnectionRefusedError:
         print('Server refused connection. Exiting')
-        exit(1)
+        exit(4)
     except socket.timeout:
         print('Timeout connection to server. Exiting')
-        exit(2)      
+        exit(5)      
     return s
 
 def ldpc_enc_str_to_array(text:str,G:np.ndarray,snr:float,seed:int)->(np.ndarray,float):
@@ -472,7 +472,7 @@ def read_file(fullp:str)-> str:
             #print(l)
     except UnicodeDecodeError as e:
         print(f'error in encodig utf-8 file {fullp}\ndetected {e.reason}\nClosing program')
-        exit()
+        exit(2)
     return l
 
 def ber_to_snr(error_rate:float)-> float:
