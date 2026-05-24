@@ -154,5 +154,5 @@ for r in range(steps):
 if s is not None:
     s.close()
 
-#visually_compare(log_f,event.keys())
-print('program ends')
+visually_compare(log_f,event.keys())
+print('Client ends')

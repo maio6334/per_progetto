@@ -60,7 +60,7 @@ DEF_ERR_RATE= 0.02
 MIN_ERR_RATE= 0.001
 MAX_ERR_RATE= 0.1
 
-DEF_STEPS= 30
+DEF_STEPS= 10
 MAX_STEPS= 500
 
 
@@ -636,50 +636,57 @@ def get_hash(data:list|np.ndarray)-> str:
     m.update(mv_enc)
     return  m.hexdigest()
 
-def visually_compare2(logfile:str,columns:list):
-    if TESTING:
-        event={'coding':'H','rate':0.0, 'diff':0, 'avg_te':0.0, 'avg_td':0.0}
-    columns=list(event)
-    columns.insert(0,'datetime')
-    df=pd.read_csv(logfile, names=columns, index_col=2, delimiter=';')
-    df=df.groupby(['rate','coding']).mean()
-    df.reset_index()
-    
-    
-    l=[]
-    for cod in coding:
-        for dim in columns[4:]:
-            filt=df[df['coding']==cod][dim].groupby(level=0).mean()
-            ser_name=cod + '-' + dim
-            filt.name=ser_name
-            l.append(filt)
-
-    df2=pd.concat(l,axis=1)
-    df2.plot()
-    plt.show()
-    pass
-
-
-
 def visually_compare(logfile:str,columns:list):
+    TESTING=True
     if TESTING:
-        event={'coding':'H','rate':0.0, 'diff':0, 'avg_te':0.0, 'avg_td':0.0}
+        event={'coding':'H','rate':0.0, 'action':'', 'diff':0.0, 'avg_t':0.0}
     columns=list(event)
     columns.insert(0,'datetime')
-    df=pd.read_csv(logfile, names=columns, index_col=2, delimiter=';')
-    coding=pd.unique(df.coding)
-    l=[]
-    for cod in coding:
-        for dim in columns[4:]:
-            filt=df[df['coding']==cod][dim].groupby(level=0).mean()
-            ser_name=cod + '-' + dim
-            filt.name=ser_name
-            l.append(filt)
+    df=pd.read_csv(logfile, names=columns, delimiter=';')
+    df=df.groupby(['rate','coding','action'],as_index=False)[["diff", "avg_t"]].mean()
+    df=df.set_index('rate')
+    fig, axs = plt.subplots(nrows=2, ncols=1, sharex=True, figsize=(5, 10))
+    codings=pd.unique(df.coding)
+    actions=pd.unique(df.action)
+  
+    for cod in codings:
+        for act in actions: 
+            filt_t=df[(df['coding']==cod) & (df['action']==act)].avg_t
+            ser_name=cod + '_' + act
+            filt_t.name=ser_name
+            filt_t.plot(ax=axs[0])
+            if act=="DEC":
+                filt_e=df[(df['coding']==cod) & (df['action']==act)]['diff']
+                filt_e.name=ser_name
+                filt_e.plot(ax=axs[1])    
 
-    df2=pd.concat(l,axis=1)
-    df2.plot()
+    titles=['Time vs BER','Errors vs BER']
+    for i, ax in enumerate(axs):
+        ax.set_title(titles[i])
+        ax.legend()
     plt.show()
-    pass
+
+
+
+def _test_visually_compare():
+    steps=DEF_STEPS
+    error_list=sweep_range(DEF_ERR_RATE,DEF_STEPS)
+    log_f=DEF_LOG
+    err=0
+    for r in range(steps):
+        error_rate=error_list[r]
+        for c in ['H','L']:
+            if c=='H':
+                adj=2
+                err=r
+            else:
+                adj=1
+                err=r/2
+            val=round(r*adj,2)
+            event={'coding':c,'rate':error_rate, 'action':'ENC','diff':0,  'avg_t':val}
+            log(event,log_f )  
+            event={'coding':c,'rate':error_rate, 'action':'DEC','diff':err,  'avg_t':val*2}
+            log(event,log_f )
 
 
 
@@ -688,10 +695,11 @@ def main():
     #f='/home/maurizio/Desktop/progit.pdf'
     #f='./inferno_c1.txt'
     #read_file(f)
-    visually_compare2('log.csv',[])
+    
+    #_test_visually_compare()
+    visually_compare('log.csv',[])
 
     pass
 
 if __name__ == "__main__":
-    print(hc.__file__)
     main()
