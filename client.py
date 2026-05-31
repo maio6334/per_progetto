@@ -55,6 +55,7 @@ Version:
 import pickle
 import numpy as np
 from pyldpc import make_ldpc, decode, get_message, encode
+from copy import deepcopy
 
 
 # local modules 
@@ -88,7 +89,7 @@ seed = np.random.RandomState(42)
 H, G = make_ldpc(LDPC_N, LDPC_D_V, LDPC_D_C, seed=seed, systematic=True, sparse=True)
 k = G.shape[1] # k=8 as expected
 
-error_list=sweep_range(mid_error_rate,steps)
+error_rates=sweep_range(mid_error_rate,steps)
 #converting BER to SNR
 #snr=ber_to_snr(error_rate) 
 #snrs=map(ber_to_snr,error_list)
@@ -100,7 +101,7 @@ event={} # to log duration
 comm_err=0
 
 for r in range(steps):
-    error_rate=error_list[r]
+    error_rate=error_rates[r]
     snr=ber_to_snr(error_rate) 
     for c in ['H','L']:
         avg_te=0
@@ -108,6 +109,7 @@ for r in range(steps):
     
         if c=="H":
             encoded, avg_te= hamming_enc_str_to_list(text)
+            print(f'enc ok step={r} , rate={error_rate}')
         else:
             encoded, avg_te= ldpc_enc_str_to_array(text,G,snr,seed)
         
@@ -140,6 +142,7 @@ for r in range(steps):
 
         if c=="H":
             rtext, avg_td= hamming_dec_list_to_str(r_enc)
+            print(f'decode ok step={r} , rate={error_rate}')
         else:
             rtext, avg_td=ldpc_dec_list_to_str(r_enc,H,G,snr)
         
@@ -148,8 +151,8 @@ for r in range(steps):
         event={'coding':c,'rate':error_rate, 'action':'DEC','diff':err,  'avg_t':avg_td}
         log(event,log_f )
   
-        print(f"ini {c} {text}" )
-        print(f"fin {c} {rtext}\n")
+        print(f"\ncoding {c} sent:\n{text}" )
+        print(f"\ncoding {c} recv:\n{rtext}\n")
         
 if s is not None:
     s.close()

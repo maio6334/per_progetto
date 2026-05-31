@@ -51,18 +51,10 @@ import matplotlib.pyplot as plt
 
 # local modules
 from costants import TCP_IP,TCP_PORT ,BUFFER_SIZE, TIMING_ITERATIONS,\
-                     PACKING_FORMAT, BYTES_IN_INTEGER, TESTING
+                     PACKING_FORMAT, BYTES_IN_INTEGER, DEF_MSG, DEF_LOG,\
+                     DEF_ERR_RATE, MIN_ERR_RATE, MAX_ERR_RATE, DEF_STEPS, MAX_STEPS,\
+                     TESTING 
                     
-# local constants
-DEF_MSG=    '"A§€𝄞.My mama always said: "Life was like a box of chocolates; you never know what you’re gonna get."'
-DEF_LOG= 'log.csv'
-DEF_ERR_RATE= 0.02
-MIN_ERR_RATE= 0.001
-MAX_ERR_RATE= 0.1
-
-DEF_STEPS= 10
-MAX_STEPS= 500
-
 
 def sweep_range(mid:float,steps:int)->list:
     """
@@ -85,8 +77,6 @@ def sweep_range(mid:float,steps:int)->list:
     stop  = mid+ delta
     seq = np.linspace(start,stop,steps) 
     return seq 
-
-
 
 class GetDetailedInfo(argparse.Action):
     """
@@ -331,7 +321,9 @@ def hamming_enc_str_to_list(text:str)->list:
         l=len(text[i].encode())*8
         c_ord=ord(text[i])
         try:
+            print(f'pre encode {c_ord},l={l}')
             c=hc.encode(c_ord,l)
+            print(f'post encode {c_ord},l={l}')
             dur+= timeit(lambda: hc.encode(c_ord,l), number=TIMING_ITERATIONS)
         except Exception :
             dur=float("nan")
@@ -417,6 +409,9 @@ def hamming_dec_list_to_str(message:list)-> str:
             dur=float("nan")
 
         try:
+            #r.append(chr(int(d,2))) # don't catch UNICODE Surrogates
+            if 0xD800 <= int(d,2) <= 0xDFFF:
+                raise ValueError
             r.append(chr(int(d,2)))
         except (ValueError,OverflowError): # overflow detected when int is not a unicode value
             print(f'error decoding character in position {i} , inserting  "�" instead', file=sys.stderr)
@@ -636,33 +631,50 @@ def get_hash(data:list|np.ndarray)-> str:
     m.update(mv_enc)
     return  m.hexdigest()
 
-def visually_compare(logfile:str,columns:list):
-    TESTING=True
-    if TESTING:
-        event={'coding':'H','rate':0.0, 'action':'', 'diff':0.0, 'avg_t':0.0}
-    columns=list(event)
-    columns.insert(0,'datetime')
+def visually_compare(logfile:str,fields:list):
+    """
+    Plots two axes, first comparing code/decode time vs error rate, the latter compares error in decoded text
+    
+    Parameters
+    ----------
+    logfile
+        data file to plot
+    
+    fields
+        column's names
+
+    Returns
+    -------
+    None
+
+    """   
+    columns=[k for k in fields] # need to recreate a list because dict.keys() isn a list but a read only view
+    columns.insert(0,'datetime')   # log function track datetime in first position
     df=pd.read_csv(logfile, names=columns, delimiter=';')
     df=df.groupby(['rate','coding','action'],as_index=False)[["diff", "avg_t"]].mean()
     df=df.set_index('rate')
-    fig, axs = plt.subplots(nrows=2, ncols=1, sharex=True, figsize=(5, 10))
+    fig, axs = plt.subplots(nrows=2, ncols=1,  figsize=(5, 10), num='Comparing Hamming vs LDPC')
     codings=pd.unique(df.coding)
     actions=pd.unique(df.action)
-  
-    for cod in codings:
-        for act in actions: 
+    colors=[['dodgerblue','skyblue'],['orangered','darksalmon']]
+    for c,cod in enumerate(codings):
+        for a,act in enumerate(actions): 
             filt_t=df[(df['coding']==cod) & (df['action']==act)].avg_t
             ser_name=cod + '_' + act
             filt_t.name=ser_name
-            filt_t.plot(ax=axs[0])
+            filt_t.plot(ax=axs[0],color=colors[c][a])
             if act=="DEC":
                 filt_e=df[(df['coding']==cod) & (df['action']==act)]['diff']
                 filt_e.name=ser_name
-                filt_e.plot(ax=axs[1])    
+                filt_e.plot(ax=axs[1],color=colors[c][a])    
 
     titles=['Time vs BER','Errors vs BER']
+    y_label=['Mean duration','Errors']
+
     for i, ax in enumerate(axs):
         ax.set_title(titles[i])
+        ax.set_ylabel(y_label[i])
+        ax.set_xlabel('BER')
         ax.legend()
     plt.show()
 
