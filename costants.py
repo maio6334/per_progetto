@@ -11,7 +11,7 @@ TCP_PORT = 23232
 BUFFER_SIZE = 1024
 
 #timeit parameter
-TIMING_ITERATIONS=1 #1_000 
+TIMING_ITERATIONS=1_000
 
 # constants usend to send/receive
 PACKING_FORMAT='>I' 

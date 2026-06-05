@@ -20,6 +20,8 @@ Arguments:
     -l --log FILE          output log file 
     -e --error-rate RATE   mean error rate (Bit Error Rate)
     -s --steps STEPS       Number of code-decode cycles using equally spaced error rates around the mean BER 
+    -d --do_graph          Enable plotting function
+    -g --graph_only        Executes only drawing function
     -v --verbose           Prints the docstring info of this module
 
 Examples:
@@ -82,80 +84,83 @@ Client attemps to detect and correct errors logging each event to a file
 '''
 
 # commande line param management & defaults
-input_f, log_f, mid_error_rate, steps  = manage_cmdline(descr)
+input_f, log_f, mid_error_rate, steps, enable_plotting, graph_only  = manage_cmdline(descr)
 
-# create code/decode matrix using LDPC lib
-seed = np.random.RandomState(42)
-H, G = make_ldpc(LDPC_N, LDPC_D_V, LDPC_D_C, seed=seed, systematic=True, sparse=True)
-k = G.shape[1] # k=8 as expected
+if not graph_only:
+    # create code/decode matrix using LDPC lib
+    seed = np.random.RandomState(42)
+    H, G = make_ldpc(LDPC_N, LDPC_D_V, LDPC_D_C, seed=seed, systematic=True, sparse=True)
+    k = G.shape[1] # k=8 as expected
 
-error_rates=sweep_range(mid_error_rate,steps)
-#converting BER to SNR
-#snr=ber_to_snr(error_rate) 
-#snrs=map(ber_to_snr,error_list)
+    error_rates=sweep_range(mid_error_rate,steps)
+    #converting BER to SNR
+    #snr=ber_to_snr(error_rate) 
+    #snrs=map(ber_to_snr,error_list)
 
-s=connect_2_server()
-text = get_text_message(input_f)
+    s=connect_2_server()
+    text = get_text_message(input_f)
 
-event={} # to log duration 
-comm_err=0
+    event={} # to log duration 
+    comm_err=0
 
-for r in range(steps):
-    error_rate=error_rates[r]
-    snr=ber_to_snr(error_rate) 
-    for c in ['H','L']:
-        avg_te=0
-        avg_td=0
-    
-        if c=="H":
-            encoded, avg_te= hamming_enc_str_to_list(text)
-            print(f'enc ok step={r} , rate={error_rate}')
-        else:
-            encoded, avg_te= ldpc_enc_str_to_array(text,G,snr,seed)
+    for r in range(steps):
+        error_rate=error_rates[r]
+        snr=ber_to_snr(error_rate) 
+        for c in ['H','L']:
+            avg_te=0
+            avg_td=0
         
-        event={'coding':c,'rate':error_rate, 'action':'ENC','diff':0,  'avg_t':avg_te}
-        log(event,log_f )        
-        hash=get_hash(encoded)
-        mesg={'coding':c,'er':error_rate,'enc':encoded,'hash':hash}
-
-        payload = pickle.dumps(mesg)
-        l=len(payload)
-        good_comm=False
-        while not good_comm:
-            send_with_header(s,payload)  # needed ad payload > BUFFER_SIZE # old s.sendall(payload) 
-            rmsg=pickle.loads((recv_witch_header(s))) #rmsg=pickle.loads(s.recv(BUFFER_SIZE))      
-            r_hash=rmsg['hash']
-            r_enc=rmsg['enc']
-            if TESTING:
-                rmsg['coding']='W'
-            if rmsg['coding']=='W' or not(is_valid_data(r_enc,r_hash)):
-                comm_err+=1
-                if comm_err> MAX_COMM_ERR:
-                    print('too much communication error.closing client')
-                    exit(1)
-                else:
-                    print(f"payload is corrupted, resending n={comm_err}")
-                
+            if c=="H":
+                encoded, avg_te= hamming_enc_str_to_list(text)
+                print(f'enc ok step={r} , rate={error_rate}')
             else:
-                good_comm=True
-                comm_err=0
+                encoded, avg_te= ldpc_enc_str_to_array(text,G,snr,seed)
+            
+            event={'coding':c,'rate':error_rate, 'action':'ENC','diff':0,  'avg_t':avg_te}
+            log(event,log_f )        
+            hash=get_hash(encoded)
+            mesg={'coding':c,'er':error_rate,'enc':encoded,'hash':hash}
 
-        if c=="H":
-            rtext, avg_td= hamming_dec_list_to_str(r_enc)
-            print(f'decode ok step={r} , rate={error_rate}')
-        else:
-            rtext, avg_td=ldpc_dec_list_to_str(r_enc,H,G,snr)
-        
-        err=count_differences(text,rtext)
-        # old event={'coding':c,'rate':error_rate,'diff':err, 'avg_te':avg_te, 'avg_td':avg_td}
-        event={'coding':c,'rate':error_rate, 'action':'DEC','diff':err,  'avg_t':avg_td}
-        log(event,log_f )
-  
-        print(f"\ncoding {c} sent:\n{text}" )
-        print(f"\ncoding {c} recv:\n{rtext}\n")
-        
-if s is not None:
-    s.close()
+            payload = pickle.dumps(mesg)
+            l=len(payload)
+            good_comm=False
+            while not good_comm:
+                send_with_header(s,payload)  # needed ad payload > BUFFER_SIZE # old s.sendall(payload) 
+                rmsg=pickle.loads((recv_witch_header(s))) #rmsg=pickle.loads(s.recv(BUFFER_SIZE))      
+                r_hash=rmsg['hash']
+                r_enc=rmsg['enc']
+                if TESTING:
+                    rmsg['coding']='W'
+                if rmsg['coding']=='W' or not(is_valid_data(r_enc,r_hash)):
+                    comm_err+=1
+                    if comm_err> MAX_COMM_ERR:
+                        print('too much communication error.closing client')
+                        exit(1)
+                    else:
+                        print(f"payload is corrupted, resending n={comm_err}")
+                    
+                else:
+                    good_comm=True
+                    comm_err=0
 
-visually_compare(log_f,event.keys())
+            if c=="H":
+                rtext, avg_td= hamming_dec_list_to_str(r_enc)
+                print(f'decode ok step={r} , rate={error_rate}')
+            else:
+                rtext, avg_td=ldpc_dec_list_to_str(r_enc,H,G,snr)
+            
+            err=count_differences(text,rtext)
+            # old event={'coding':c,'rate':error_rate,'diff':err, 'avg_te':avg_te, 'avg_td':avg_td}
+            event={'coding':c,'rate':error_rate, 'action':'DEC','diff':err,  'avg_t':avg_td}
+            log(event,log_f )
+    
+            print(f"\ncoding {c} sent:\n{text}" )
+            print(f"\ncoding {c} recv:\n{rtext}\n")
+            
+    if s is not None:
+        s.close()
+
+if enable_plotting or graph_only:
+    event={'coding':None,'rate':None, 'action':None,'diff':None,  'avg_t':None}
+    visually_compare(log_f,event.keys())
 print('Client ends')

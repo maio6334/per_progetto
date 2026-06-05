@@ -1,0 +1,5210 @@
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=0 , rate=0.008
+decode ok step=0 , rate=0.008
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=1 , rate=0.008444444444444445
+decode ok step=1 , rate=0.008444444444444445
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=2 , rate=0.008888888888888889
+decode ok step=2 , rate=0.008888888888888889
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=3 , rate=0.009333333333333334
+decode ok step=3 , rate=0.009333333333333334
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=4 , rate=0.009777777777777778
+decode ok step=4 , rate=0.009777777777777778
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=5 , rate=0.010222222222222223
+decode ok step=5 , rate=0.010222222222222223
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=6 , rate=0.010666666666666668
+decode ok step=6 , rate=0.010666666666666668
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=7 , rate=0.011111111111111112
+decode ok step=7 , rate=0.011111111111111112
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=8 , rate=0.011555555555555555
+decode ok step=8 , rate=0.011555555555555555
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"Aࢬ𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=9 , rate=0.012
+decode ok step=9 , rate=0.012
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+Client ends
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=0 , rate=0.009000000000000001
+decode ok step=0 , rate=0.009000000000000001
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=1 , rate=0.009105263157894738
+decode ok step=1 , rate=0.009105263157894738
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=2 , rate=0.009210526315789475
+decode ok step=2 , rate=0.009210526315789475
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=3 , rate=0.009315789473684211
+decode ok step=3 , rate=0.009315789473684211
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=4 , rate=0.009421052631578948
+decode ok step=4 , rate=0.009421052631578948
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=5 , rate=0.009526315789473685
+decode ok step=5 , rate=0.009526315789473685
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=6 , rate=0.009631578947368422
+decode ok step=6 , rate=0.009631578947368422
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=7 , rate=0.009736842105263158
+decode ok step=7 , rate=0.009736842105263158
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=8 , rate=0.009842105263157895
+decode ok step=8 , rate=0.009842105263157895
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=9 , rate=0.009947368421052632
+decode ok step=9 , rate=0.009947368421052632
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=10 , rate=0.010052631578947369
+decode ok step=10 , rate=0.010052631578947369
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=11 , rate=0.010157894736842105
+decode ok step=11 , rate=0.010157894736842105
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=12 , rate=0.010263157894736842
+decode ok step=12 , rate=0.010263157894736842
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=13 , rate=0.010368421052631579
+decode ok step=13 , rate=0.010368421052631579
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=14 , rate=0.010473684210526316
+decode ok step=14 , rate=0.010473684210526316
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=15 , rate=0.010578947368421052
+decode ok step=15 , rate=0.010578947368421052
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=16 , rate=0.010684210526315789
+decode ok step=16 , rate=0.010684210526315789
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=17 , rate=0.010789473684210526
+decode ok step=17 , rate=0.010789473684210526
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=18 , rate=0.010894736842105263
+decode ok step=18 , rate=0.010894736842105263
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=19 , rate=0.011
+decode ok step=19 , rate=0.011
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+Client ends
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=0 , rate=0.009333333333333334
+decode ok step=0 , rate=0.009333333333333334
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=1 , rate=0.009379310344827587
+decode ok step=1 , rate=0.009379310344827587
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=2 , rate=0.00942528735632184
+decode ok step=2 , rate=0.00942528735632184
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=3 , rate=0.009471264367816092
+decode ok step=3 , rate=0.009471264367816092
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=4 , rate=0.009517241379310346
+decode ok step=4 , rate=0.009517241379310346
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=5 , rate=0.009563218390804599
+decode ok step=5 , rate=0.009563218390804599
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=6 , rate=0.009609195402298851
+decode ok step=6 , rate=0.009609195402298851
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=7 , rate=0.009655172413793104
+decode ok step=7 , rate=0.009655172413793104
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=8 , rate=0.009701149425287357
+decode ok step=8 , rate=0.009701149425287357
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=9 , rate=0.00974712643678161
+decode ok step=9 , rate=0.00974712643678161
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=10 , rate=0.009793103448275862
+decode ok step=10 , rate=0.009793103448275862
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=11 , rate=0.009839080459770114
+decode ok step=11 , rate=0.009839080459770114
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=12 , rate=0.009885057471264369
+decode ok step=12 , rate=0.009885057471264369
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=13 , rate=0.009931034482758621
+decode ok step=13 , rate=0.009931034482758621
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=14 , rate=0.009977011494252874
+decode ok step=14 , rate=0.009977011494252874
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=15 , rate=0.010022988505747127
+decode ok step=15 , rate=0.010022988505747127
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=16 , rate=0.010068965517241379
+decode ok step=16 , rate=0.010068965517241379
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=17 , rate=0.010114942528735632
+decode ok step=17 , rate=0.010114942528735632
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=18 , rate=0.010160919540229884
+decode ok step=18 , rate=0.010160919540229884
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=19 , rate=0.010206896551724139
+decode ok step=19 , rate=0.010206896551724139
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=20 , rate=0.010252873563218391
+decode ok step=20 , rate=0.010252873563218391
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=21 , rate=0.010298850574712644
+decode ok step=21 , rate=0.010298850574712644
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=22 , rate=0.010344827586206896
+decode ok step=22 , rate=0.010344827586206896
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=23 , rate=0.010390804597701149
+decode ok step=23 , rate=0.010390804597701149
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=24 , rate=0.010436781609195402
+decode ok step=24 , rate=0.010436781609195402
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=25 , rate=0.010482758620689654
+decode ok step=25 , rate=0.010482758620689654
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=26 , rate=0.010528735632183907
+decode ok step=26 , rate=0.010528735632183907
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=27 , rate=0.010574712643678161
+decode ok step=27 , rate=0.010574712643678161
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=28 , rate=0.010620689655172414
+decode ok step=28 , rate=0.010620689655172414
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=29 , rate=0.010666666666666666
+decode ok step=29 , rate=0.010666666666666666
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+Client ends
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=0 , rate=0.0095
+decode ok step=0 , rate=0.0095
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=1 , rate=0.009525641025641025
+decode ok step=1 , rate=0.009525641025641025
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=2 , rate=0.009551282051282051
+decode ok step=2 , rate=0.009551282051282051
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=3 , rate=0.009576923076923077
+decode ok step=3 , rate=0.009576923076923077
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=4 , rate=0.009602564102564102
+decode ok step=4 , rate=0.009602564102564102
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=5 , rate=0.009628205128205128
+decode ok step=5 , rate=0.009628205128205128
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=6 , rate=0.009653846153846153
+decode ok step=6 , rate=0.009653846153846153
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=7 , rate=0.009679487179487179
+decode ok step=7 , rate=0.009679487179487179
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=8 , rate=0.009705128205128205
+decode ok step=8 , rate=0.009705128205128205
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=9 , rate=0.00973076923076923
+decode ok step=9 , rate=0.00973076923076923
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=10 , rate=0.009756410256410256
+decode ok step=10 , rate=0.009756410256410256
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=11 , rate=0.009782051282051282
+decode ok step=11 , rate=0.009782051282051282
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=12 , rate=0.009807692307692307
+decode ok step=12 , rate=0.009807692307692307
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=13 , rate=0.009833333333333333
+decode ok step=13 , rate=0.009833333333333333
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=14 , rate=0.009858974358974358
+decode ok step=14 , rate=0.009858974358974358
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=15 , rate=0.009884615384615384
+decode ok step=15 , rate=0.009884615384615384
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=16 , rate=0.00991025641025641
+decode ok step=16 , rate=0.00991025641025641
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=17 , rate=0.009935897435897435
+decode ok step=17 , rate=0.009935897435897435
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=18 , rate=0.009961538461538461
+decode ok step=18 , rate=0.009961538461538461
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=19 , rate=0.009987179487179487
+decode ok step=19 , rate=0.009987179487179487
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=20 , rate=0.010012820512820514
+decode ok step=20 , rate=0.010012820512820514
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=21 , rate=0.01003846153846154
+decode ok step=21 , rate=0.01003846153846154
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=22 , rate=0.010064102564102565
+decode ok step=22 , rate=0.010064102564102565
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=23 , rate=0.01008974358974359
+decode ok step=23 , rate=0.01008974358974359
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=24 , rate=0.010115384615384616
+decode ok step=24 , rate=0.010115384615384616
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=25 , rate=0.010141025641025642
+decode ok step=25 , rate=0.010141025641025642
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=26 , rate=0.010166666666666668
+decode ok step=26 , rate=0.010166666666666668
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=27 , rate=0.010192307692307693
+decode ok step=27 , rate=0.010192307692307693
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=28 , rate=0.010217948717948719
+decode ok step=28 , rate=0.010217948717948719
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=29 , rate=0.010243589743589744
+decode ok step=29 , rate=0.010243589743589744
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=30 , rate=0.01026923076923077
+decode ok step=30 , rate=0.01026923076923077
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=31 , rate=0.010294871794871796
+decode ok step=31 , rate=0.010294871794871796
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=32 , rate=0.010320512820512821
+decode ok step=32 , rate=0.010320512820512821
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=33 , rate=0.010346153846153847
+decode ok step=33 , rate=0.010346153846153847
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=34 , rate=0.010371794871794873
+decode ok step=34 , rate=0.010371794871794873
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=35 , rate=0.010397435897435898
+decode ok step=35 , rate=0.010397435897435898
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=36 , rate=0.010423076923076924
+decode ok step=36 , rate=0.010423076923076924
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=37 , rate=0.01044871794871795
+decode ok step=37 , rate=0.01044871794871795
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=38 , rate=0.010474358974358975
+decode ok step=38 , rate=0.010474358974358975
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=39 , rate=0.0105
+decode ok step=39 , rate=0.0105
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+Client ends
+error decoding character in position 2 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=0 , rate=0.016
+decode ok step=0 , rate=0.016
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=1 , rate=0.01688888888888889
+decode ok step=1 , rate=0.01688888888888889
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=2 , rate=0.017777777777777778
+decode ok step=2 , rate=0.017777777777777778
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=3 , rate=0.018666666666666668
+decode ok step=3 , rate=0.018666666666666668
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=4 , rate=0.019555555555555555
+decode ok step=4 , rate=0.019555555555555555
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A�𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=5 , rate=0.020444444444444446
+decode ok step=5 , rate=0.020444444444444446
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=6 , rate=0.021333333333333336
+decode ok step=6 , rate=0.021333333333333336
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€�.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=7 , rate=0.022222222222222223
+decode ok step=7 , rate=0.022222222222222223
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=8 , rate=0.02311111111111111
+decode ok step=8 , rate=0.02311111111111111
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=9 , rate=0.024
+decode ok step=9 , rate=0.024
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€鄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+Client ends
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 2 , inserting  "�" instead
+double free or corruption (out)
+Aborted (core dumped)
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 2 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+double free or corruption (out)
+Aborted (core dumped)
+double free or corruption (out)
+Aborted (core dumped)
+error decoding character in position 3 , inserting  "�" instead
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=0 , rate=0.024
+decode ok step=0 , rate=0.024
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=1 , rate=0.025333333333333333
+decode ok step=1 , rate=0.025333333333333333
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.ө"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=2 , rate=0.026666666666666665
+decode ok step=2 , rate=0.026666666666666665
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=3 , rate=0.028
+decode ok step=3 , rate=0.028
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.ҽ"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=4 , rate=0.029333333333333333
+decode ok step=4 , rate=0.029333333333333333
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞N©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=5 , rate=0.030666666666666665
+decode ok step=5 , rate=0.030666666666666665
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"M€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=6 , rate=0.032
+decode ok step=6 , rate=0.032
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€�.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=7 , rate=0.03333333333333333
+decode ok step=7 , rate=0.03333333333333333
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=8 , rate=0.034666666666666665
+decode ok step=8 , rate=0.034666666666666665
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝔼.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=9 , rate=0.036
+decode ok step=9 , rate=0.036
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€􍆞&©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+Client ends
+error decoding character in position 2 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 2 , inserting  "�" instead
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=0 , rate=0.027
+decode ok step=0 , rate=0.027
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=1 , rate=0.02731578947368421
+decode ok step=1 , rate=0.02731578947368421
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄗.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=2 , rate=0.02763157894736842
+decode ok step=2 , rate=0.02763157894736842
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A�𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=3 , rate=0.02794736842105263
+decode ok step=3 , rate=0.02794736842105263
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=4 , rate=0.02826315789473684
+decode ok step=4 , rate=0.02826315789473684
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=5 , rate=0.028578947368421054
+decode ok step=5 , rate=0.028578947368421054
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=6 , rate=0.028894736842105265
+decode ok step=6 , rate=0.028894736842105265
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=7 , rate=0.029210526315789475
+decode ok step=7 , rate=0.029210526315789475
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©:
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=8 , rate=0.029526315789473685
+decode ok step=8 , rate=0.029526315789473685
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€�.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=9 , rate=0.029842105263157895
+decode ok step=9 , rate=0.029842105263157895
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A‬𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=10 , rate=0.030157894736842106
+decode ok step=10 , rate=0.030157894736842106
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€�.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=11 , rate=0.030473684210526316
+decode ok step=11 , rate=0.030473684210526316
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"Q€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=12 , rate=0.030789473684210526
+decode ok step=12 , rate=0.030789473684210526
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A₌𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=13 , rate=0.03110526315789474
+decode ok step=13 , rate=0.03110526315789474
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.ȩ"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=14 , rate=0.03142105263157895
+decode ok step=14 , rate=0.03142105263157895
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.삩"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=15 , rate=0.03173684210526316
+decode ok step=15 , rate=0.03173684210526316
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A�𝕞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=16 , rate=0.03205263157894737
+decode ok step=16 , rate=0.03205263157894737
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"a€𝄞.©"
+error decoding character in position 2 , inserting  "�" instead
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=17 , rate=0.03236842105263158
+decode ok step=17 , rate=0.03236842105263158
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A�𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=18 , rate=0.03268421052631579
+decode ok step=18 , rate=0.03268421052631579
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=19 , rate=0.033
+decode ok step=19 , rate=0.033
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+Client ends
+error decoding character in position 2 , inserting  "�" instead
+error decoding character in position 2 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=0 , rate=0.027999999999999997
+decode ok step=0 , rate=0.027999999999999997
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€񙆞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=1 , rate=0.028137931034482755
+decode ok step=1 , rate=0.028137931034482755
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A񊆬𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=2 , rate=0.028275862068965516
+decode ok step=2 , rate=0.028275862068965516
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A�𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=3 , rate=0.028413793103448274
+decode ok step=3 , rate=0.028413793103448274
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=4 , rate=0.02855172413793103
+decode ok step=4 , rate=0.02855172413793103
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=5 , rate=0.02868965517241379
+decode ok step=5 , rate=0.02868965517241379
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©f
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=6 , rate=0.02882758620689655
+decode ok step=6 , rate=0.02882758620689655
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A�𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=7 , rate=0.02896551724137931
+decode ok step=7 , rate=0.02896551724137931
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€�.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=8 , rate=0.029103448275862066
+decode ok step=8 , rate=0.029103448275862066
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"M€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=9 , rate=0.029241379310344824
+decode ok step=9 , rate=0.029241379310344824
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=10 , rate=0.029379310344827585
+decode ok step=10 , rate=0.029379310344827585
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞®©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=11 , rate=0.029517241379310343
+decode ok step=11 , rate=0.029517241379310343
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=12 , rate=0.0296551724137931
+decode ok step=12 , rate=0.0296551724137931
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=13 , rate=0.029793103448275862
+decode ok step=13 , rate=0.029793103448275862
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=14 , rate=0.02993103448275862
+decode ok step=14 , rate=0.02993103448275862
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€�.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=15 , rate=0.030068965517241378
+decode ok step=15 , rate=0.030068965517241378
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=16 , rate=0.030206896551724136
+decode ok step=16 , rate=0.030206896551724136
+
+coding H sent:
+"A€𝄞.©"error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 2 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+
+
+coding H recv:
+"A€�/©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=17 , rate=0.030344827586206897
+decode ok step=17 , rate=0.030344827586206897
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.)"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=18 , rate=0.030482758620689655
+decode ok step=18 , rate=0.030482758620689655
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€򙀞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=19 , rate=0.030620689655172412
+decode ok step=19 , rate=0.030620689655172412
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A⒎𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=20 , rate=0.030758620689655174
+decode ok step=20 , rate=0.030758620689655174
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.®"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=21 , rate=0.03089655172413793
+decode ok step=21 , rate=0.03089655172413793
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=22 , rate=0.03103448275862069
+decode ok step=22 , rate=0.03103448275862069
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=23 , rate=0.031172413793103447
+decode ok step=23 , rate=0.031172413793103447
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=24 , rate=0.031310344827586205
+decode ok step=24 , rate=0.031310344827586205
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=25 , rate=0.03144827586206896
+decode ok step=25 , rate=0.03144827586206896
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=26 , rate=0.03158620689655173
+decode ok step=26 , rate=0.03158620689655173
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€�.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=27 , rate=0.031724137931034485
+decode ok step=27 , rate=0.031724137931034485
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A�𝄞©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=28 , rate=0.03186206896551724
+decode ok step=28 , rate=0.03186206896551724
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€𝄞.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+pre encode 34,l=8
+post encode 34,l=8
+pre encode 65,l=8
+post encode 65,l=8
+pre encode 8364,l=24
+post encode 8364,l=24
+pre encode 119070,l=32
+post encode 119070,l=32
+pre encode 46,l=8
+post encode 46,l=8
+pre encode 169,l=16
+post encode 169,l=16
+pre encode 34,l=8
+post encode 34,l=8
+enc ok step=29 , rate=0.032
+decode ok step=29 , rate=0.032
+
+coding H sent:
+"A€𝄞.©"
+
+coding H recv:
+"A€�.©"
+
+
+coding L sent:
+"A€𝄞.©"
+
+coding L recv:
+"A€𝄞.©"
+
+Client ends
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 2 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+free(): invalid next size (normal)
+Aborted (core dumped)
+free(): invalid next size (fast)
+Aborted (core dumped)
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 2 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+Segmentation fault (core dumped)
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 2 , inserting  "�" instead
+corrupted size vs. prev_size
+Aborted (core dumped)
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 2 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 2 , inserting  "�" instead
+free(): invalid next size (fast)
+Aborted (core dumped)
+error decoding character in position 3 , inserting  "�" instead
+free(): invalid next size (fast)
+Aborted (core dumped)
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 2 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+double free or corruption (out)
+Aborted (core dumped)
+error decoding character in position 2 , inserting  "�" instead
+free(): invalid next size (fast)
+Aborted (core dumped)
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 2 , inserting  "�" instead
+error decoding character in position 2 , inserting  "�" instead
+error decoding character in position 2 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+malloc(): unaligned tcache chunk detected
+Aborted (core dumped)
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 2 , inserting  "�" instead
+error decoding character in position 2 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+double free or corruption (out)
+Aborted (core dumped)
+error decoding character in position 2 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+error decoding character in position 2 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+free(): invalid next size (fast)
+Aborted (core dumped)
+free(): invalid next size (fast)
+Aborted (core dumped)
+error decoding character in position 2 , inserting  "�" instead
+error decoding character in position 2 , inserting  "�" instead
+error decoding character in position 3 , inserting  "�" instead
+double free or corruption (out)
+Aborted (core dumped)

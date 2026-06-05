@@ -122,9 +122,10 @@ def manage_cmdline(descr:str)-> (str,str,float,int): #bool):
     parser = argparse.ArgumentParser(description=descr, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("-i","--input", default=None, help="Path to the input text file, if input is missing will be code/decode a built-in string")
     parser.add_argument("-l","--log", default=DEF_LOG, help=f"Path to the output log file (default: ./{DEF_LOG})")
-    parser.add_argument("-e","--error-rate", type=float,default=DEF_ERR_RATE,help=f"Error rate, float between {MIN_ERR_RATE} and {MAX_ERR_RATE} if missing default: {DEF_ERR_RATE})")
-    #parser.add_argument("-r","--repeat", type=int,default=DEF_REPT,help=f"number of repetition for code-decode cycle (default: {DEF_REPT}, max:{MAX_REPT} )") 
+    parser.add_argument("-e","--error_rate", type=float,default=DEF_ERR_RATE,help=f"Error rate, float between {MIN_ERR_RATE} and {MAX_ERR_RATE} if missing default: {DEF_ERR_RATE})")
     parser.add_argument("-s","--steps", type=int,default=DEF_STEPS,help=f"number of code-decode cycles using equally spaced values around the selected error rate(default: {DEF_STEPS})") 
+    parser.add_argument("-d","--do_graph", action='store_true', help="Enable plotting function")
+    parser.add_argument("-g","--graph_only", action='store_true', help="Executes only drawing function")
     parser.add_argument("-v","--verbose", nargs=0,action=GetDetailedInfo, help="Prints the main-module's docstring")
     
     args = parser.parse_args()
@@ -172,7 +173,7 @@ def manage_cmdline(descr:str)-> (str,str,float,int): #bool):
     err_rate =range_validate('--error-rate',args.error_rate,MIN_ERR_RATE,MAX_ERR_RATE)  # !! Parser translate - with _
     steps=range_validate('--steps',args.steps,0,MAX_STEPS) 
 
-    return (file_input, log_file, err_rate,steps) 
+    return (file_input, log_file, err_rate,steps,args.do_graph, args.graph_only) 
 
 def get_text_message(input_f:str | None)-> str:
     """
