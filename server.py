@@ -39,11 +39,10 @@ Version:
 """
 # standard modules
 import argparse  
-import socket
 import os
 import pickle
 import signal # to handle manual shutdown
-
+import socket
 
 
 # local modules and functions
@@ -52,7 +51,6 @@ from shared_funct import GetDetailedInfo, msg_with_errors,\
     send_with_header, recv_witch_header ,\
     ConnectionClosed, ConnectionLost,get_hash , is_valid_data
 
-#from commonhelp import verify_command, txt_file_2_dic
 
 def server_activate():
     try:

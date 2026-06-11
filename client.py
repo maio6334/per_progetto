@@ -54,11 +54,12 @@ Version:
 
 # standard modules
 #import socket
-import pickle
-import numpy as np
-from pyldpc import make_ldpc, decode, get_message, encode
 from copy import deepcopy
+import numpy as np
+import pickle
 
+#library module
+from pyldpc import make_ldpc, decode, get_message, encode
 
 # local modules 
 from shared_funct import manage_cmdline, get_text_message,\
@@ -66,9 +67,6 @@ from shared_funct import manage_cmdline, get_text_message,\
     hamming_dec_list_to_str, send_with_header, recv_witch_header, \
     log, ber_to_snr,ldpc_enc_str_to_array, ldpc_dec_list_to_str, \
     get_hash, is_valid_data, sweep_range, visually_compare
-
-
-
 from costants import LDPC_N, LDPC_D_V, LDPC_D_C ,MAX_COMM_ERR , TESTING
 
 
